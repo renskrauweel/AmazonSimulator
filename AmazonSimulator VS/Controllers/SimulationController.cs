@@ -44,11 +44,12 @@ namespace Controllers {
             running = true;
 
             List<Coordinate> coordinates = new List<Coordinate> {
-                new Coordinate(15, 0, 5), // Top center
-                new Coordinate(25, 0, 5), // Top right
-                new Coordinate(25, 0, 10), // Righ lane 1
-                new Coordinate(25, 0, 15), // Righ lane 2
-                new Coordinate(25, 0, 20), // Righ lane 3
+                new Coordinate(15, 0, 5), // Top center - A
+                new Coordinate(25, 0, 5), // Top right - E
+                new Coordinate(25, 0, 10), // Right lane 1
+                new Coordinate(25, 0, 15), // Right lane 2
+                new Coordinate(25, 0, 20), // Right lane 3
+                new Coordinate(25, 0, 25), // Bottom right - D
             };
 
             // Fetch robot
@@ -117,7 +118,7 @@ namespace Controllers {
         // Movement loop methods
         private void LoopDownX(BaseModel bm, double coordinateX)
         {
-            for (double x = bm.x; x >= coordinateX; x -= 0.1)
+            for (double x = bm.x; x >= coordinateX; x -= 0.2)
             {
                 bm.Move(x, bm.y, bm.z);
                 UpdateFrame();
@@ -125,7 +126,7 @@ namespace Controllers {
         }
         private void LoopUpX(BaseModel bm, double coordinateX)
         {
-            for (double x = bm.x; x <= coordinateX; x += 0.1)
+            for (double x = bm.x; x <= coordinateX; x += 0.2)
             {
                 bm.Move(x, bm.y, bm.z);
                 UpdateFrame();
@@ -133,7 +134,7 @@ namespace Controllers {
         }
         private void LoopDownY(BaseModel bm, double coordinateY)
         {
-            for (double y = bm.y; y >= coordinateY; y -= 0.1)
+            for (double y = bm.y; y >= coordinateY; y -= 0.2)
             {
                 bm.Move(bm.x, y, bm.z);
                 UpdateFrame();
@@ -141,7 +142,7 @@ namespace Controllers {
         }
         private void LoopUpY(BaseModel bm, double coordinateY)
         {
-            for (double y = bm.y; y <= coordinateY; y += 0.1)
+            for (double y = bm.y; y <= coordinateY; y += 0.2)
             {
                 bm.Move(bm.x, y, bm.z);
                 UpdateFrame();
@@ -149,7 +150,7 @@ namespace Controllers {
         }
         private void LoopDownZ(BaseModel bm, double coordinateZ)
         {
-            for (double z = bm.z; z >= coordinateZ; z -= 0.1)
+            for (double z = bm.z; z >= coordinateZ; z -= 0.2)
             {
                 bm.Move(bm.x, bm.y, z);
                 UpdateFrame();
@@ -157,7 +158,7 @@ namespace Controllers {
         }
         private void LoopUpZ(BaseModel bm, double coordinateZ)
         {
-            for (double z = bm.z; z <= coordinateZ; z += 0.1)
+            for (double z = bm.z; z <= coordinateZ; z += 0.2)
             {
                 bm.Move(bm.x, bm.y, z);
                 UpdateFrame();
