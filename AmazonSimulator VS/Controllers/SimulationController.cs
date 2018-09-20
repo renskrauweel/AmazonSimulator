@@ -50,7 +50,21 @@ namespace Controllers {
                 new Coordinate(25, 0, 15), // Right lane 2
                 new Coordinate(25, 0, 20), // Right lane 3
                 new Coordinate(25, 0, 25), // Bottom right - D
+                new Coordinate(5, 0, 25), // Bottom left - C
+                new Coordinate(5, 0, 5), // Top left - B
             };
+
+            Node nodeA = new Node('A', 0);
+            nodeA.shortestDistanceFromStart = 0;
+            Node nodeB = new Node('B', 10);
+            Node nodeE = new Node('E', 10);
+            Node nodeD = new Node('D', 20);
+            Node nodeC = new Node('C', 20);
+            nodeA.nodes.AddRange(new List<Node> {nodeB, nodeE});
+            nodeE.nodes.AddRange(new List<Node> { nodeA, nodeD });
+            nodeD.nodes.AddRange(new List<Node> { nodeE, nodeC });
+            nodeC.nodes.AddRange(new List<Node> { nodeD, nodeB });
+            nodeB.nodes.AddRange(new List<Node> { nodeA, nodeC });
 
             // Fetch robot
             Robot r = w.GetRobots()[0];
