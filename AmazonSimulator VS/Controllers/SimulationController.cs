@@ -16,8 +16,28 @@ namespace Controllers {
         private bool running = false;
         private int tickTime = 50;
 
+        private Graph g = new Graph();
+        private List<Coordinate> coordinates;
+
         public SimulationController(World w) {
             this.w = w;
+
+            coordinates = new List<Coordinate> {
+                new Coordinate(15, 0, 5, 'A'), // Top center - A
+                new Coordinate(25, 0, 5, 'E'), // Top right - E
+                new Coordinate(25, 0, 10), // Right lane 1
+                new Coordinate(25, 0, 15), // Right lane 2
+                new Coordinate(25, 0, 20), // Right lane 3
+                new Coordinate(25, 0, 25, 'D'), // Bottom right - D
+                new Coordinate(5, 0, 25, 'C'), // Bottom left - C
+                new Coordinate(5, 0, 5, 'B'), // Top left - B
+            };
+
+            g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'E', 10 } });
+            g.add_vertex('B', new Dictionary<char, int>() { { 'A', 10 }, { 'C', 20 } });
+            g.add_vertex('C', new Dictionary<char, int>() { { 'B', 20 }, { 'D', 20 } });
+            g.add_vertex('D', new Dictionary<char, int>() { { 'C', 20 }, { 'E', 20 } });
+            g.add_vertex('E', new Dictionary<char, int>() { { 'A', 10 }, { 'D', 20 } });
         }
 
         public void AddView(ClientView v) {
@@ -43,44 +63,16 @@ namespace Controllers {
         public void Simulate() {
             running = true;
 
-            List<Coordinate> coordinates = new List<Coordinate> {
-                new Coordinate(15, 0, 5), // Top center - A
-                new Coordinate(25, 0, 5), // Top right - E
-                new Coordinate(25, 0, 10), // Right lane 1
-                new Coordinate(25, 0, 15), // Right lane 2
-                new Coordinate(25, 0, 20), // Right lane 3
-                new Coordinate(25, 0, 25), // Bottom right - D
-                new Coordinate(5, 0, 25), // Bottom left - C
-                new Coordinate(5, 0, 5), // Top left - B
-            };
-
-            Node nodeA = new Node('A', 0);
-            nodeA.shortestDistanceFromStart = 0;
-            Node nodeB = new Node('B', 10);
-            Node nodeE = new Node('E', 10);
-            Node nodeD = new Node('D', 20);
-            Node nodeC = new Node('C', 20);
-            nodeA.nodes.AddRange(new List<Node> {nodeB, nodeE});
-            nodeE.nodes.AddRange(new List<Node> { nodeA, nodeD });
-            nodeD.nodes.AddRange(new List<Node> { nodeE, nodeC });
-            nodeC.nodes.AddRange(new List<Node> { nodeD, nodeB });
-            nodeB.nodes.AddRange(new List<Node> { nodeA, nodeC });
-
             // Fetch robot
             Robot r = w.GetRobots()[0];
+            r.Move(15, 0, 5); // Move to A
 
             while (running) {
-                // Move through coordinates
-                foreach (Coordinate coordinate in coordinates)
-                {
-                    MoveToCoordinate(r, coordinate.GetX(), coordinate.GetY(), coordinate.GetZ());
-                }
-                // Reverse through coordinates
-                for (int i = coordinates.Count - 1; i >= 0; i--)
-                {
-                    Coordinate coordinate = coordinates[i];
-                    MoveToCoordinate(r, coordinate.GetX(), coordinate.GetY(), coordinate.GetZ());
-                }
+                // Move through vertices
+                MoveToVertex(r, 'A', 'D');
+                MoveToVertex(r, 'D', 'C');
+                MoveToVertex(r, 'C', 'A');
+                Thread.Sleep(3000); // Wait 3 seconds
 
                 UpdateFrame();
             }
@@ -90,8 +82,12 @@ namespace Controllers {
             running = false;
         }
 
-        private void MoveToCoordinate(BaseModel bm, double coordinateX, double coordinateY, double coordinateZ)
+        private void MoveToCoordinate(BaseModel bm, Coordinate coordinate)
         {
+            double coordinateX = coordinate.GetX();
+            double coordinateY = coordinate.GetY();
+            double coordinateZ = coordinate.GetZ();
+
             // X
             ChangeDirection(bm, new Coordinate(coordinateX, coordinateY, coordinateZ));
             if (bm.x <= coordinateX)
@@ -120,6 +116,21 @@ namespace Controllers {
             else
             {
                 LoopDownZ(bm, coordinateZ);
+            }
+        }
+
+        private void MoveToVertex(BaseModel bm, char vertexStart, char vertexTo)
+        {
+            List<char> verticesToTravelThrough = g.shortest_path(vertexStart, vertexTo);
+            for (int i = verticesToTravelThrough.Count-1; i >= 0; i--)
+            {
+                foreach (Coordinate coordinate in this.coordinates)
+                {
+                    if (coordinate.GetVertex() == verticesToTravelThrough[i])
+                    {
+                        MoveToCoordinate(bm, coordinate);
+                    }
+                }
             }
         }
 
