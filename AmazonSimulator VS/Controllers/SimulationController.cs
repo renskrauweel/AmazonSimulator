@@ -89,7 +89,7 @@ namespace Controllers {
             double coordinateZ = coordinate.GetZ();
 
             // X
-            ChangeDirection(bm, new Coordinate(coordinateX, coordinateY, coordinateZ));
+            ChangeDirection(bm, coordinate);
             if (bm.x <= coordinateX)
             {
                 LoopUpX(bm, coordinateX);
@@ -98,7 +98,7 @@ namespace Controllers {
                 LoopDownX(bm, coordinateX);
             }
             // Y
-            ChangeDirection(bm, new Coordinate(coordinateX, coordinateY, coordinateZ));
+            ChangeDirection(bm, coordinate);
             if (bm.y <= coordinateY)
             {
                 LoopUpY(bm, coordinateY);
@@ -108,7 +108,7 @@ namespace Controllers {
                 LoopDownY(bm, coordinateY);
             }
             // Z
-            ChangeDirection(bm, new Coordinate(coordinateX, coordinateY, coordinateZ));
+            ChangeDirection(bm, coordinate);
             if (bm.z <= coordinateZ)
             {
                 LoopUpZ(bm, coordinateZ);
