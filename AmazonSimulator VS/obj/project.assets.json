@@ -12663,27 +12663,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rensk\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\danie\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "B:\\School\\Jaar 2\\OOP\\AmazonSimulator VS\\AmazonSimulator VS\\AmazonSimulator VS.csproj",
+      "projectUniqueName": "B:\\HBO-ICT\\Jaar 2\\AmazonSimulator\\AmazonSimulator VS\\AmazonSimulator VS.csproj",
       "projectName": "AmazonSimulator VS",
-      "projectPath": "B:\\School\\Jaar 2\\OOP\\AmazonSimulator VS\\AmazonSimulator VS\\AmazonSimulator VS.csproj",
-      "packagesPath": "C:\\Users\\rensk\\.nuget\\packages\\",
-      "outputPath": "B:\\School\\Jaar 2\\OOP\\AmazonSimulator VS\\AmazonSimulator VS\\obj\\",
+      "projectPath": "B:\\HBO-ICT\\Jaar 2\\AmazonSimulator\\AmazonSimulator VS\\AmazonSimulator VS.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "B:\\HBO-ICT\\Jaar 2\\AmazonSimulator\\AmazonSimulator VS\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\rensk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
