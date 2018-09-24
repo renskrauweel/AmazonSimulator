@@ -91,6 +91,11 @@
                 sideRight.position.z = 12.5;
                 sideRight.position.y = .01;
                 scene.add(sideRight);
+
+                var sphericalSkyboxGeometry = new THREE.SphereGeometry(500, 32, 32);
+                var sphericalSkyboxMaterial = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/Street View 360.jpg"), side: THREE.DoubleSide });
+                var sphericalSkybox = new THREE.Mesh(sphericalSkyboxGeometry, sphericalSkyboxMaterial);
+                scene.add(sphericalSkybox);
             }
 
             function onWindowResize() {

@@ -20,3 +20,14 @@ B:\School\Jaar 2\OOP\AmazonSimulator VS\AmazonSimulator VS\obj\Debug\netcoreapp2
 B:\School\Jaar 2\OOP\AmazonSimulator VS\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.dll
 B:\School\Jaar 2\OOP\AmazonSimulator VS\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.pdb
 B:\School\Jaar 2\OOP\AmazonSimulator VS\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.csprojResolveAssemblyReference.cache
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.deps.json
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.runtimeconfig.json
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.runtimeconfig.dev.json
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.dll
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.pdb
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.csprojAssemblyReference.cache
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.csproj.CoreCompileInputs.cache
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.AssemblyInfoInputs.cache
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.AssemblyInfo.cs
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.dll
+B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.pdb
