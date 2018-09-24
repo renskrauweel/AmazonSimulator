@@ -137,17 +137,20 @@
                             case "truck":
                                 var OBJLoader = new THREE.OBJLoader();
                                 var mtlLoader = new THREE.MTLLoader();
+                                OBJLoader.setPath('models/');
+                                mtlLoader.setPath('models/');
 
-                                mtlLoader.load('models/truck.mtl', function (materials) {
+                                mtlLoader.load('Airplane.mtl', function (materials) {
                                     materials.preload();
+                                    materials.wireframe = false;
                                     OBJLoader.setMaterials(materials);
                                     // load a resource
                                     OBJLoader.load(
                                         // resource URL
-                                        'models/truck.obj',
+                                        'Airplane.obj',
                                         // called when resource is loaded
                                         function (truck) {
-                                            var scalar = 100;
+                                            var scalar = 1000;
                                             truck.scale.set(2 / scalar, 1 / scalar, 1 / scalar);
                                             console.log(truck);
 
