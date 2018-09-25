@@ -20,7 +20,7 @@
             var cameraControls;
 
             var worldObjects = {};
-            var suitcaseCount = 4;
+            var suitcaseCount = 5;
 
             function init() {
                 camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
@@ -200,7 +200,7 @@
                                 mtlLoader.setPath('models/');
 
                                 var suitcaseNr = Math.floor((Math.random() * suitcaseCount) + 1);
-                                suitcaseNr = 4;
+                                suitcaseNr = 5;
 
                                 mtlLoader.load('Suitcase_' + suitcaseNr + '.mtl', function (materials) {
                                     materials.preload();
