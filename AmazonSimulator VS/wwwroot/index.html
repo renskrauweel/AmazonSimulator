@@ -20,6 +20,7 @@
             var cameraControls;
 
             var worldObjects = {};
+            var suitcaseCount = 4;
 
             function init() {
                 camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
@@ -191,6 +192,50 @@
 
                                 scene.add(group);
                                 worldObjects[command.parameters.guid] = group;*/
+                                break;
+                            case "suitcase":
+                                var OBJLoader = new THREE.OBJLoader();
+                                var mtlLoader = new THREE.MTLLoader();
+                                OBJLoader.setPath('models/');
+                                mtlLoader.setPath('models/');
+
+                                var suitcaseNr = Math.floor((Math.random() * suitcaseCount) + 1);
+                                suitcaseNr = 4;
+
+                                mtlLoader.load('Suitcase_' + suitcaseNr + '.mtl', function (materials) {
+                                    materials.preload();
+                                    materials.wireframe = false;
+                                    OBJLoader.setMaterials(materials);
+                                    // load a resource
+                                    OBJLoader.load(
+                                        // resource URL
+                                        'Suitcase_' + suitcaseNr + '.obj',
+                                        // called when resource is loaded
+                                        function (suitcase) {
+                                            console.log(suitcase);
+                                            //suitcase.children[0].material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+                                            var group = new THREE.Group();
+                                            group.add(suitcase);
+
+                                            scene.add(group);
+                                            worldObjects[command.parameters.guid] = group;
+
+                                        },
+                                        // called when loading is in progresses
+                                        function (xhr) {
+
+                                            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+
+                                        },
+                                        // called when loading has errors
+                                        function (error) {
+
+                                            console.log('An error happened');
+
+                                        }
+                                    );
+                                });
                                 break;
                         }
                     }

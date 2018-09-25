@@ -15,6 +15,9 @@ namespace Models {
 
             Truck t = CreateTruck(0, 0, 0);
             t.Move(0, 0, 13);
+
+            Suitcase s1 = CreateSuitcase(25, 0, 10);
+            s1.Move(25, 0, 10);
         }
 
         private Robot CreateRobot(double x, double y, double z) {
@@ -28,6 +31,13 @@ namespace Models {
             Truck t = new Truck(x, y, z, 0, 0, 0);
             worldObjects.Add(t);
             return t;
+        }
+
+        private Suitcase CreateSuitcase(double x, double y, double z)
+        {
+            Suitcase s = new Suitcase(x, y, z, 0, 0, 0);
+            worldObjects.Add(s);
+            return s;
         }
 
         public IDisposable Subscribe(IObserver<Command> observer)
