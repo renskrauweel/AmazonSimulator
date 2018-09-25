@@ -63,15 +63,29 @@ namespace Controllers {
         public void Simulate() {
             running = true;
 
+            // Fetch truck
+            Truck t = w.GetTrucks()[0];
+
             // Fetch robot
             Robot r = w.GetRobots()[0];
             r.Move(15, 0, 5); // Move to A
 
+            List<Suitcase> suitcases = w.GetSuitcases();
+            //s.Move(25, 0, 10);
+            MoveToCoordinate(suitcases[0], new Coordinate(20, 0, 12));
+            MoveToCoordinate(suitcases[1], new Coordinate(20, 0, 18));
+
+            UpdateFrame();
+
             while (running) {
                 // Move through vertices
+                MoveToVertex(t, 'B', 'A');
+
                 MoveToVertex(r, 'A', 'D');
                 MoveToVertex(r, 'D', 'C');
                 MoveToVertex(r, 'C', 'A');
+
+                MoveToVertex(t, 'A', 'E');
                 Thread.Sleep(3000); // Wait 3 seconds
 
                 UpdateFrame();

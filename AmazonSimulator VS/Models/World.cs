@@ -14,10 +14,12 @@ namespace Models {
             r.Move(4.6, 0, 13);
 
             Truck t = CreateTruck(0, 0, 0);
-            t.Move(0, 0, 13);
+            t.Move(4.6, 0, 13);
 
-            Suitcase s1 = CreateSuitcase(25, 0, 10);
+            Suitcase s1 = CreateSuitcase(0, 0, 0);
             s1.Move(25, 0, 10);
+            Suitcase s2 = CreateSuitcase(0, 0, 0);
+            s2.Move(20, 0, 16);
         }
 
         private Robot CreateRobot(double x, double y, double z) {
@@ -90,6 +92,32 @@ namespace Models {
                 }
             }
             return robots;
+        }
+
+        public List<Suitcase> GetSuitcases()
+        {
+            List<Suitcase> suitcases = new List<Suitcase>();
+            foreach (BaseModel s in this.worldObjects)
+            {
+                if (s is Suitcase)
+                {
+                    suitcases.Add((Suitcase)s);
+                }
+            }
+            return suitcases;
+        }
+
+        public List<Truck> GetTrucks()
+        {
+            List<Truck> trucks = new List<Truck>();
+            foreach (BaseModel truck in worldObjects)
+            {
+                if (truck is Truck)
+                {
+                    trucks.Add((Truck)truck);
+                }
+            }
+            return trucks;
         }
     }
 
