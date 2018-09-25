@@ -1,26 +1,104 @@
-# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 08.09.2017 19:54:06
 
-newmtl _crayfishdiffuse
-	Ns 30.0000
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.8039 1.0000 0.0196
-	Kd 0.8039 1.0000 0.0196
-	Ks 0.2000 0.2000 0.2000
-	Ke 0.0000 0.0000 0.0000
+newmtl 0.BaseMaterial
+Kd  0.28697876 0.36540124 0.2474977
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 1.000000
+Ns  00
+illum 2
 
-newmtl 02___Default
-	Ns 10.0000
-	Ni 1.5000
-	d 1.0000
-	Tr 0.0000
-	Tf 1.0000 1.0000 1.0000 
-	illum 2
-	Ka 0.0196 0.0196 0.0196
-	Kd 0.0196 0.0196 0.0196
-	Ks 0.0000 0.0000 0.0000
-	Ke 0.0000 0.0000 0.0000
+
+
+
+newmtl 1.BaseMaterial
+Kd  0.28235288 0.36078424 0.24313716
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 1.000000
+Ns  00
+illum 2
+
+
+
+
+newmtl 2.BaseMaterial
+Kd  0.2862742 0.36470556 0.24705844
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 1.000000
+Ns  00
+illum 2
+
+
+
+
+newmtl 3.BaseMaterial
+Kd  0.2 0.30196072 0.17254894
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 1.000000
+Ns  00
+illum 2
+
+
+
+
+newmtl 4.BaseMaterial
+Kd  00 00 00
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 1.000000
+Ns  00
+illum 2
+
+
+
+
+newmtl 5.BaseTransparentMaterial
+Kd  0.2823529 0.3607843 0.2431372
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 0.500000
+Ns  00
+illum 2
+
+
+
+
+newmtl 6.BaseTransparentMaterial
+Kd  00 00 00
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 0.500000
+Ns  00
+illum 2
+
+
+
+newmtl 7.ReflectiveMaterial
+Kd  0.63137256 0.5882354 0.5882354
+Ks  0.8 0.8 0.8
+Ka  00 00 00
+d 1.000000
+Ns  925
+illum 2
+
+
+
+newmtl 8.ReflectiveMaterial
+Kd 0.48230316 0.41165828 0.22201882
+Ks 0.8 0.8 0.8
+Ka 00 00 00
+d 1.000000
+Ns 925.0
+illum 2
+
+
+
+newmtl 9.BaseMaterial
+Kd  0.27843128 0.35686264 0.23921556
+Ks  0.2 0.2 0.2
+Ka  00 00 00
+d 1.000000
+Ns  00
+illum 2

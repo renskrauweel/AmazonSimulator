@@ -200,7 +200,7 @@
                                 mtlLoader.setPath('models/');
 
                                 var suitcaseNr = Math.floor((Math.random() * suitcaseCount) + 1);
-                                suitcaseNr = 3;
+                                suitcaseNr = 4;
 
                                 mtlLoader.load('Suitcase_' + suitcaseNr + '.mtl', function (materials) {
                                     materials.preload();
@@ -213,6 +213,7 @@
                                         // called when resource is loaded
                                         function (suitcase) {
                                             console.log(suitcase);
+
                                             //suitcase.children[0].material = new THREE.MeshBasicMaterial({ color: 0xffffff });
 
                                             var group = new THREE.Group();
@@ -237,8 +238,39 @@
                                     );
                                 });
                                 break;
+                        }/*
+                        {
+
+                            var OBJLoader = new THREE.OBJLoader();
+                            var mtlLoader = new THREE.MTLLoader();
+                            OBJLoader.setPath('models/');
+                            mtlLoader.setPath('models/');
+
+                            mtlLoader.load('myGarage.mtl', function (materials) {
+                            materials.preload();
+                            materials.wireframe = false;
+                            OBJLoader.setMaterials(materials);
+                            // load a resource
+                            OBJLoader.load(
+                                // resource URL
+                                'myGarage.obj',
+
+                                // called when loading is in progresses
+                                function (xhr) {
+
+                                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+
+                                },
+                                // called when loading has errors
+                                function (error) {
+
+                                    console.log('An error happened');
+
+                                }
+                                );
+                            });
                         }
-                    }
+                    }*/
 
                     var object = worldObjects[command.parameters.guid];
 
