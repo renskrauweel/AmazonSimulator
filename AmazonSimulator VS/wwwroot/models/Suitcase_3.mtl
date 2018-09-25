@@ -1,5 +1,5 @@
 newmtl Luggage_mat1
-Kd 0.00 0.00 0.00
+Kd 1.00 1.00 1.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd Luggage_BaseColor.png
