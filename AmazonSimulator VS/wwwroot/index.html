@@ -181,17 +181,6 @@
                                         }
                                     );
                                 });
-
-                                /*var geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-                                var material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-                                var truck = new THREE.Mesh(geometry, material);
-                                truck.position.y = 0.15;
-
-                                var group = new THREE.Group();
-                                group.add(truck);
-
-                                scene.add(group);
-                                worldObjects[command.parameters.guid] = group;*/
                                 break;
                             case "suitcase":
                                 var OBJLoader = new THREE.OBJLoader();
@@ -200,7 +189,7 @@
                                 mtlLoader.setPath('models/');
 
                                 var suitcaseNr = Math.floor((Math.random() * suitcaseCount) + 1);
-                                suitcaseNr = 4;
+                                suitcaseNr = 3;
 
                                 mtlLoader.load('Suitcase_' + suitcaseNr + '.mtl', function (materials) {
                                     materials.preload();
@@ -269,8 +258,8 @@
                                 }
                                 );
                             });
-                        }
-                    }*/
+                        }*/
+                    }
 
                     var object = worldObjects[command.parameters.guid];
 
