@@ -31,3 +31,14 @@ B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\Ama
 B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.AssemblyInfo.cs
 B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.dll
 B:\HBO-ICT\Jaar 2\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.pdb
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.deps.json
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.runtimeconfig.json
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.runtimeconfig.dev.json
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.dll
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\bin\Debug\netcoreapp2.0\AmazonSimulator VS.pdb
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.csprojAssemblyReference.cache
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.csproj.CoreCompileInputs.cache
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.AssemblyInfoInputs.cache
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.AssemblyInfo.cs
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.dll
+D:\Daniel\HBO-ICT\Jaar 2\Periode 1\AmazonSimulator\AmazonSimulator VS\obj\Debug\netcoreapp2.0\AmazonSimulator VS.pdb
