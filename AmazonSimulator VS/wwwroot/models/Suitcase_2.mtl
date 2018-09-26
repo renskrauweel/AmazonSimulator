@@ -1,104 +1,22 @@
+# Blender MTL File: '9.blend'
+# Material Count: 2
 
-newmtl 0.BaseMaterial
-Kd  0.28697876 0.36540124 0.2474977
-Ks  0.2 0.2 0.2
-Ka  00 00 00
+newmtl 1A1A1A
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.101961 0.101961 0.101961
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
 d 1.000000
-Ns  00
-illum 2
+illum 7
 
-
-
-
-newmtl 1.BaseMaterial
-Kd  0.28235288 0.36078424 0.24313716
-Ks  0.2 0.2 0.2
-Ka  00 00 00
+newmtl FFEB3B
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.900000 0.921569 0.231373
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
 d 1.000000
-Ns  00
-illum 2
-
-
-
-
-newmtl 2.BaseMaterial
-Kd  0.2862742 0.36470556 0.24705844
-Ks  0.2 0.2 0.2
-Ka  00 00 00
-d 1.000000
-Ns  00
-illum 2
-
-
-
-
-newmtl 3.BaseMaterial
-Kd  0.2 0.30196072 0.17254894
-Ks  0.2 0.2 0.2
-Ka  00 00 00
-d 1.000000
-Ns  00
-illum 2
-
-
-
-
-newmtl 4.BaseMaterial
-Kd  00 00 00
-Ks  0.2 0.2 0.2
-Ka  00 00 00
-d 1.000000
-Ns  00
-illum 2
-
-
-
-
-newmtl 5.BaseTransparentMaterial
-Kd  0.2823529 0.3607843 0.2431372
-Ks  0.2 0.2 0.2
-Ka  00 00 00
-d 0.500000
-Ns  00
-illum 2
-
-
-
-
-newmtl 6.BaseTransparentMaterial
-Kd  00 00 00
-Ks  0.2 0.2 0.2
-Ka  00 00 00
-d 0.500000
-Ns  00
-illum 2
-
-
-
-newmtl 7.ReflectiveMaterial
-Kd  0.63137256 0.5882354 0.5882354
-Ks  0.8 0.8 0.8
-Ka  00 00 00
-d 1.000000
-Ns  925
-illum 2
-
-
-
-newmtl 8.ReflectiveMaterial
-Kd 0.48230316 0.41165828 0.22201882
-Ks 0.8 0.8 0.8
-Ka 00 00 00
-d 1.000000
-Ns 925.0
-illum 2
-
-
-
-newmtl 9.BaseMaterial
-Kd  0.27843128 0.35686264 0.23921556
-Ks  0.2 0.2 0.2
-Ka  00 00 00
-d 1.000000
-Ns  00
-illum 2
+illum 7
