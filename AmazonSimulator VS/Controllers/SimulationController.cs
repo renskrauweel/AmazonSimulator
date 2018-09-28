@@ -101,18 +101,9 @@ namespace Controllers {
             MoveToCoordinate(suitcases[1], new Coordinate(20, 0, 18));
 
             UpdateFrame();
-
+            r.AddTask(new RobotMove(g.shortest_path('A', 'D'), coordinates, g));
+            r.AddTask(new RobotMove(g.shortest_path('D', 'B'), coordinates, g));
             while (running) {
-                // Move through vertices
-                MoveToVertex(t, 'B', 'A');
-
-                MoveToVertex(r, 'A', 'D');
-                MoveToVertex(r, 'D', 'C');
-                MoveToVertex(r, 'C', 'A');
-
-                MoveToVertex(t, 'A', 'E');
-                Thread.Sleep(3000); // Wait 3 seconds
-
                 UpdateFrame();
             }
         }
