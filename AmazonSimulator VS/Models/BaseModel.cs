@@ -71,7 +71,7 @@ namespace Models
             } else
             {
                 // Move z-axis
-                if (coordinates.First().GetZ() != Math.Round(this.z, 1))
+                if (coordinates.First().GetZ() != Math.Round(this.z))
                 {
                     if (coordinates.First().GetZ() > this.z)
                     {
@@ -81,6 +81,9 @@ namespace Models
                     {
                         this.Move(this.x, this.y, this.z - this.speed);
                     }
+                } else
+                {
+                    coordinates.RemoveAt(0);
                 }
             }
         }
