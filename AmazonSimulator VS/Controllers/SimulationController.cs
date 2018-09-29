@@ -57,12 +57,55 @@ namespace Controllers {
                 new Coordinate(20, 0, 12, 'Å'), // Third Inner Sector - Bottom Left - Å
 
             };
-
+            
             g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'E', 10 } });
             g.add_vertex('B', new Dictionary<char, int>() { { 'A', 10 }, { 'C', 20 } });
             g.add_vertex('C', new Dictionary<char, int>() { { 'B', 20 }, { 'D', 20 } });
             g.add_vertex('D', new Dictionary<char, int>() { { 'C', 20 }, { 'E', 20 } });
             g.add_vertex('E', new Dictionary<char, int>() { { 'A', 10 }, { 'D', 20 } });
+            
+            /*
+            //Start
+            g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'K', 10 } });
+
+            //Right Lane
+            g.add_vertex('B', new Dictionary<char, int>() { { 'A', 10 }, { 'C', 20 } });
+            g.add_vertex('C', new Dictionary<char, int>() { { 'B', 20 }, { 'D', 30 }, { 'N', 30 } });
+            g.add_vertex('D', new Dictionary<char, int>() { { 'C', 30 }, { 'E', 40 }, { 'T', 40 } });
+            g.add_vertex('E', new Dictionary<char, int>() { { 'D', 40 }, { 'F', 50 }, { 'Z', 50 } });
+            g.add_vertex('F', new Dictionary<char, int>() { { 'E', 50 }, { 'G', 70 } });
+
+            //Left Lane
+            g.add_vertex('K', new Dictionary<char, int>() { { 'A', 10 }, { 'J', 20 } });
+            g.add_vertex('J', new Dictionary<char, int>() { { 'K', 20 }, { 'I', 30 }, { 'L', 30 } });
+            g.add_vertex('I', new Dictionary<char, int>() { { 'J', 30 }, { 'H', 40 }, { 'R', 40 } });
+            g.add_vertex('H', new Dictionary<char, int>() { { 'I', 40 }, { 'G', 50 }, { 'X', 50 } });
+            g.add_vertex('G', new Dictionary<char, int>() { { 'H', 50 }, { 'F', 70 } });
+
+            //First Inner Sector
+            g.add_vertex('L', new Dictionary<char, int>() { { 'J', 30 }, { 'M', 50 }, { 'Q', 40 } });
+            g.add_vertex('M', new Dictionary<char, int>() { { 'N', 40 }, { 'L', 50 }, { 'P', 50 } });
+            g.add_vertex('N', new Dictionary<char, int>() { { 'C', 30 }, { 'M', 40 }, { 'O', 40 } });
+            g.add_vertex('O', new Dictionary<char, int>() { { 'N', 40 } });
+            g.add_vertex('P', new Dictionary<char, int>() { { 'M', 50 } });
+            g.add_vertex('Q', new Dictionary<char, int>() { { 'L', 40 } });
+
+            //Second Inner Sector
+            g.add_vertex('R', new Dictionary<char, int>() { { 'I', 40 }, { 'S', 60 }, { 'W', 50 } });
+            g.add_vertex('S', new Dictionary<char, int>() { { 'T', 50 }, { 'R', 60 }, { 'V', 60 } });
+            g.add_vertex('T', new Dictionary<char, int>() { { 'D', 40 }, { 'S', 50 }, { 'U', 50 } });
+            g.add_vertex('U', new Dictionary<char, int>() { { 'T', 50 } });
+            g.add_vertex('V', new Dictionary<char, int>() { { 'S', 60 } });
+            g.add_vertex('W', new Dictionary<char, int>() { { 'R', 50 } });
+
+            //Third Inner Sector
+            g.add_vertex('X', new Dictionary<char, int>() { { 'H', 50 }, { 'Y', 70 }, { 'Å', 60 } });
+            g.add_vertex('Y', new Dictionary<char, int>() { { 'Z', 60 }, { 'X', 70 }, { 'Ø', 70 } });
+            g.add_vertex('Z', new Dictionary<char, int>() { { 'E', 50 }, { 'Y', 60 }, { 'Æ', 60 } });
+            g.add_vertex('Æ', new Dictionary<char, int>() { { 'Z', 60 } });
+            g.add_vertex('Ø', new Dictionary<char, int>() { { 'Y', 70 } });
+            g.add_vertex('Å', new Dictionary<char, int>() { { 'X', 60 } });
+            */
         }
 
         public void AddView(ClientView v) {
