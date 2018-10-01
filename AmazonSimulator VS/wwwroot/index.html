@@ -124,7 +124,7 @@
                             group.add(garage);
 
                             scene.add(group);
-                            worldObjects[command.parameters.guid] = group;
+                            //worldObjects[command.parameters.guid] = group;
                            
                             garage.position.x = 15;
                             garage.position.y = 0;
@@ -188,6 +188,16 @@
 
                                 scene.add(group);
                                 worldObjects[command.parameters.guid] = group;
+
+                                //var object = worldObjects[command.parameters.guid];
+
+                                //object.position.x = command.parameters.x;
+                                //object.position.y = command.parameters.y;
+                                //object.position.z = command.parameters.z;
+
+                                //object.rotation.x = command.parameters.rotationX;
+                                //object.rotation.y = command.parameters.rotationY;
+                                //object.rotation.z = command.parameters.rotationZ;
                                 break;
 
                             case "truck":
@@ -215,6 +225,16 @@
 
                                             scene.add(group);
                                             worldObjects[command.parameters.guid] = group;
+
+                                            var object = worldObjects[command.parameters.guid];
+
+                                            object.position.x = command.parameters.x;
+                                            object.position.y = command.parameters.y;
+                                            object.position.z = command.parameters.z;
+
+                                            object.rotation.x = command.parameters.rotationX;
+                                            object.rotation.y = command.parameters.rotationY;
+                                            object.rotation.z = command.parameters.rotationZ;
 
                                         },
                                         // called when loading is in progresses
@@ -261,6 +281,16 @@
                                             scene.add(group);
                                             worldObjects[command.parameters.guid] = group;
 
+                                            var object = worldObjects[command.parameters.guid];
+
+                                            object.position.x = command.parameters.x;
+                                            object.position.y = command.parameters.y;
+                                            object.position.z = command.parameters.z;
+
+                                            object.rotation.x = command.parameters.rotationX;
+                                            object.rotation.y = command.parameters.rotationY;
+                                            object.rotation.z = command.parameters.rotationZ;
+
                                         },
                                         // called when loading is in progresses
                                         function (xhr) {
@@ -279,16 +309,17 @@
                                 break;
                         }
                     }
-
                     var object = worldObjects[command.parameters.guid];
 
-                    object.position.x = command.parameters.x;
-                    object.position.y = command.parameters.y;
-                    object.position.z = command.parameters.z;
+                    if (object != undefined) {
+                        object.position.x = command.parameters.x;
+                        object.position.y = command.parameters.y;
+                        object.position.z = command.parameters.z;
 
-                    object.rotation.x = command.parameters.rotationX;
-                    object.rotation.y = command.parameters.rotationY;
-                    object.rotation.z = command.parameters.rotationZ;
+                        object.rotation.x = command.parameters.rotationX;
+                        object.rotation.y = command.parameters.rotationY;
+                        object.rotation.z = command.parameters.rotationZ;
+                    }
                 }
             }
 
