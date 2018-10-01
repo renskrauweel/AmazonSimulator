@@ -140,10 +140,9 @@ namespace Controllers {
 
             List<Suitcase> suitcases = w.GetSuitcases();
             //s.Move(25, 0, 10);
-            MoveToCoordinate(suitcases[0], new Coordinate(20, 0, 12));
-            MoveToCoordinate(suitcases[1], new Coordinate(20, 0, 18));
+            //MoveToCoordinate(suitcases[0], new Coordinate(20, 0, 12));
+            //MoveToCoordinate(suitcases[1], new Coordinate(20, 0, 18));
 
-            UpdateFrame();
             r.AddTask(new RobotMove(g.shortest_path('A', 'D'), coordinates, g));
             r.AddTask(new RobotMove(g.shortest_path('D', 'B'), coordinates, g));
             while (running) {

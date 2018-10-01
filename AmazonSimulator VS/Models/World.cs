@@ -14,10 +14,11 @@ namespace Models {
             r.Move(4.6, 0, 13);
 
             Truck t = CreateTruck(0, 0, 0);
-            t.Move(4.6, 0, 13);
+            t.Move(5, 1.6, 0);
+            t.Rotate(0, Math.PI / 2, 0);
 
             Suitcase s1 = CreateSuitcase(0, 0, 0);
-            s1.Move(25, 0, 10);
+            s1.Move(20, 0, 11);
             Suitcase s2 = CreateSuitcase(0, 0, 0);
             s2.Move(20, 0, 16);
         }
