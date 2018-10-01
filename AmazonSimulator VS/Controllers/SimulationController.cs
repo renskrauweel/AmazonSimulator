@@ -52,19 +52,19 @@ namespace Controllers {
                 new Coordinate(10, 0, 10, 'X'), // Third Inner Sector - Top Left - X
                 new Coordinate(15, 0, 10, 'Y'), // Third Inner Sector - Top Center - Y
                 new Coordinate(20, 0, 10, 'Z'), // Third Inner Sector - Top Right - Z
-                new Coordinate(10, 0, 12, 'Æ'), // Third Inner Sector - Bottom Right - Æ
-                new Coordinate(15, 0, 12, 'Ø'), // Third Inner Sector - Bottom Center - Ø
-                new Coordinate(20, 0, 12, 'Å'), // Third Inner Sector - Bottom Left - Å
+                new Coordinate(10, 0, 12, '1'), // Third Inner Sector - Bottom Right - Æ
+                new Coordinate(15, 0, 12, '2'), // Third Inner Sector - Bottom Center - Ø
+                new Coordinate(20, 0, 12, '3'), // Third Inner Sector - Bottom Left - Å
 
             };
             
-            g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'E', 10 } });
+            /*g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'E', 10 } });
             g.add_vertex('B', new Dictionary<char, int>() { { 'A', 10 }, { 'C', 20 } });
             g.add_vertex('C', new Dictionary<char, int>() { { 'B', 20 }, { 'D', 20 } });
             g.add_vertex('D', new Dictionary<char, int>() { { 'C', 20 }, { 'E', 20 } });
-            g.add_vertex('E', new Dictionary<char, int>() { { 'A', 10 }, { 'D', 20 } });
+            g.add_vertex('E', new Dictionary<char, int>() { { 'A', 10 }, { 'D', 20 } });*/
             
-            /*
+            
             //Start
             g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'K', 10 } });
 
@@ -99,13 +99,13 @@ namespace Controllers {
             g.add_vertex('W', new Dictionary<char, int>() { { 'R', 50 } });
 
             //Third Inner Sector
-            g.add_vertex('X', new Dictionary<char, int>() { { 'H', 50 }, { 'Y', 70 }, { 'Å', 60 } });
-            g.add_vertex('Y', new Dictionary<char, int>() { { 'Z', 60 }, { 'X', 70 }, { 'Ø', 70 } });
-            g.add_vertex('Z', new Dictionary<char, int>() { { 'E', 50 }, { 'Y', 60 }, { 'Æ', 60 } });
-            g.add_vertex('Æ', new Dictionary<char, int>() { { 'Z', 60 } });
-            g.add_vertex('Ø', new Dictionary<char, int>() { { 'Y', 70 } });
-            g.add_vertex('Å', new Dictionary<char, int>() { { 'X', 60 } });
-            */
+            g.add_vertex('X', new Dictionary<char, int>() { { 'H', 50 }, { 'Y', 70 }, { '3', 60 } });
+            g.add_vertex('Y', new Dictionary<char, int>() { { 'Z', 60 }, { 'X', 70 }, { '2', 70 } });
+            g.add_vertex('Z', new Dictionary<char, int>() { { 'E', 50 }, { 'Y', 60 }, { '1', 60 } });
+            g.add_vertex('1', new Dictionary<char, int>() { { 'Z', 60 } });
+            g.add_vertex('2', new Dictionary<char, int>() { { 'Y', 70 } });
+            g.add_vertex('3', new Dictionary<char, int>() { { 'X', 60 } });
+            
         }
 
         public void AddView(ClientView v) {

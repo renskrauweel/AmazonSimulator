@@ -12,6 +12,7 @@ namespace Models
 
         List<char> verticesToTravelThrough;
         List<Coordinate> coordinates;
+        Coordinate destination;
         Graph g;
 
         public RobotMove(List<char> verticesToTravelThrough, List<Coordinate> coordinates, Graph g)
@@ -30,7 +31,7 @@ namespace Models
 
         public bool TaskComplete(Robot r)
         {
-            return Math.Floor(r.x) == coordinates.Last().GetX() && Math.Floor(r.z) == coordinates.Last().GetZ();
+            return Math.Floor(r.x) == destination.GetX() && Math.Floor(r.z) == destination.GetZ();
         }
 
         private void GetCoordinatesToUse()
@@ -47,6 +48,7 @@ namespace Models
                 }
             }
             this.coordinates = coordinatesToUse;
+            this.destination = coordinatesToUse.Last();
         }
     }
 }

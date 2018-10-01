@@ -57,33 +57,38 @@ namespace Models
 
         public void MoveThroughCoordinates(List<Coordinate> coordinates)
         {
-            // Move x-axis
-            if (coordinates.First().GetX() != Math.Round(this.x, 1))
+            if (coordinates.Count > 0)
             {
-                if (coordinates.First().GetX() > this.x)
+                // Move x-axis
+                if (coordinates.First().GetX() != Math.Round(this.x, 1))
                 {
-                    this.Move(this.x + this.speed, this.y, this.z);
-                }
-                else if (coordinates.First().GetX() < this.x)
-                {
-                    this.Move(this.x - this.speed, this.y, this.z);
-                }
-            } else
-            {
-                // Move z-axis
-                if (coordinates.First().GetZ() != Math.Round(this.z))
-                {
-                    if (coordinates.First().GetZ() > this.z)
+                    if (coordinates.First().GetX() > this.x)
                     {
-                        this.Move(this.x, this.y, this.z + this.speed);
+                        this.Move(this.x + this.speed, this.y, this.z);
                     }
-                    else if (coordinates.First().GetZ() < this.z)
+                    else if (coordinates.First().GetX() < this.x)
                     {
-                        this.Move(this.x, this.y, this.z - this.speed);
+                        this.Move(this.x - this.speed, this.y, this.z);
                     }
-                } else
+                }
+                else
                 {
-                    coordinates.RemoveAt(0);
+                    // Move z-axis
+                    if (coordinates.First().GetZ() != Math.Round(this.z))
+                    {
+                        if (coordinates.First().GetZ() > this.z)
+                        {
+                            this.Move(this.x, this.y, this.z + this.speed);
+                        }
+                        else if (coordinates.First().GetZ() < this.z)
+                        {
+                            this.Move(this.x, this.y, this.z - this.speed);
+                        }
+                    }
+                    else
+                    {
+                        coordinates.RemoveAt(0);
+                    }
                 }
             }
         }
