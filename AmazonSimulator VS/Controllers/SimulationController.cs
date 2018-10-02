@@ -38,23 +38,23 @@ namespace Controllers {
                 new Coordinate(10, 0, 10, 'L'), // First Inner Sector - Top Left - L
                 new Coordinate(15, 0, 10, 'M'), // First Inner Sector - Top Center - M
                 new Coordinate(20, 0, 10, 'N'), // First Inner Sector - Top Right - N
-                new Coordinate(10, 0, 12, 'O'), // First Inner Sector - Bottom Right - O
-                new Coordinate(15, 0, 12, 'P'), // First Inner Sector - Bottom Center - P
-                new Coordinate(20, 0, 12, 'Q'), // First Inner Sector - Bottom Left - Q
+                new Coordinate(10, 0, 12, 'O', true), // First Inner Sector - Bottom Right - O
+                new Coordinate(15, 0, 12, 'P', true), // First Inner Sector - Bottom Center - P
+                new Coordinate(20, 0, 12, 'Q', true), // First Inner Sector - Bottom Left - Q
 
                 new Coordinate(10, 0, 15, 'R'), // Second Inner Sector - Top Left - R
                 new Coordinate(15, 0, 15, 'S'), // Second Inner Sector - Top Center - S
                 new Coordinate(20, 0, 15, 'T'), // Second Inner Sector - Top Right - T
-                new Coordinate(10, 0, 17, 'U'), // Second Inner Sector - Bottom Right - U
-                new Coordinate(15, 0, 17, 'V'), // Second Inner Sector - Bottom Center - V
-                new Coordinate(20, 0, 17, 'W'), // Second Inner Sector - Bottom Left - W
+                new Coordinate(10, 0, 17, 'U', true), // Second Inner Sector - Bottom Right - U
+                new Coordinate(15, 0, 17, 'V', true), // Second Inner Sector - Bottom Center - V
+                new Coordinate(20, 0, 17, 'W', true), // Second Inner Sector - Bottom Left - W
 
                 new Coordinate(10, 0, 10, 'X'), // Third Inner Sector - Top Left - X
                 new Coordinate(15, 0, 10, 'Y'), // Third Inner Sector - Top Center - Y
                 new Coordinate(20, 0, 10, 'Z'), // Third Inner Sector - Top Right - Z
-                new Coordinate(10, 0, 12, '1'), // Third Inner Sector - Bottom Right - Æ
-                new Coordinate(15, 0, 12, '2'), // Third Inner Sector - Bottom Center - Ø
-                new Coordinate(20, 0, 12, '3'), // Third Inner Sector - Bottom Left - Å
+                new Coordinate(10, 0, 12, '1', true), // Third Inner Sector - Bottom Right - Æ
+                new Coordinate(15, 0, 12, '2', true), // Third Inner Sector - Bottom Center - Ø
+                new Coordinate(20, 0, 12, '3', true), // Third Inner Sector - Bottom Left - Å
 
             };
             

@@ -11,13 +11,16 @@ namespace Models
         private double y { get; set; }
         private double z { get; set; }
         private char? vertex { get; set; }
+        private bool canBeOccupied = false;
+        private Suitcase suitcase;
 
-        public Coordinate(double x, double y, double z, char? vertex=null)
+        public Coordinate(double x, double y, double z, char? vertex=null, bool canBeOccupied = false)
         {
             this.x = x;
             this.y = y;
             this.z = z;
             this.vertex = vertex;
+            this.canBeOccupied = canBeOccupied;
         }
 
         public double GetX()
@@ -35,6 +38,17 @@ namespace Models
         public char? GetVertex()
         {
             return this.vertex;
+        }
+        public Suitcase GiveSuitcase(Suitcase s)
+        {
+            this.suitcase = s;
+            return this.suitcase;
+        }
+        public Suitcase RemoveSuitcase()
+        {
+            Suitcase s = this.suitcase;
+            this.suitcase = null;
+            return s;
         }
     }
 }
