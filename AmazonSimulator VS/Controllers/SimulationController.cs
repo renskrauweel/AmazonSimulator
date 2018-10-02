@@ -22,41 +22,7 @@ namespace Controllers {
         public SimulationController(World w) {
             this.w = w;
 
-            coordinates = new List<Coordinate> {
-                new Coordinate(15, 0, 5, 'A'), // Outer Line - Top center - A
-                new Coordinate(25, 0, 5, 'B'), // Outer Line - Top right - B
-                new Coordinate(25, 0, 10, 'C'), // Outer Line - Right lane 1 - C
-                new Coordinate(25, 0, 15, 'D'), // Outer Line - Right lane 2 - D
-                new Coordinate(25, 0, 20, 'E'), // Outer Line - Right lane 3 - E
-                new Coordinate(25, 0, 25, 'F'), // Outer Line - Bottom right - F
-                new Coordinate(5, 0, 25, 'G'), // Outer Line - Bottom left - G
-                new Coordinate(5, 0, 20, 'H'), // Outer Line - Left lane 3
-                new Coordinate(5, 0, 15, 'I'), // Outer Line - Left lane 2
-                new Coordinate(5, 0, 10, 'J'), // Outer Line - Left lane 1
-                new Coordinate(5, 0, 5, 'K'), // Outer Line - Top left - B
-
-                new Coordinate(10, 0, 10, 'L'), // First Inner Sector - Top Left - L
-                new Coordinate(15, 0, 10, 'M'), // First Inner Sector - Top Center - M
-                new Coordinate(20, 0, 10, 'N'), // First Inner Sector - Top Right - N
-                new Coordinate(10, 0, 12, 'O', true), // First Inner Sector - Bottom Right - O
-                new Coordinate(15, 0, 12, 'P', true), // First Inner Sector - Bottom Center - P
-                new Coordinate(20, 0, 12, 'Q', true), // First Inner Sector - Bottom Left - Q
-
-                new Coordinate(10, 0, 15, 'R'), // Second Inner Sector - Top Left - R
-                new Coordinate(15, 0, 15, 'S'), // Second Inner Sector - Top Center - S
-                new Coordinate(20, 0, 15, 'T'), // Second Inner Sector - Top Right - T
-                new Coordinate(10, 0, 17, 'U', true), // Second Inner Sector - Bottom Right - U
-                new Coordinate(15, 0, 17, 'V', true), // Second Inner Sector - Bottom Center - V
-                new Coordinate(20, 0, 17, 'W', true), // Second Inner Sector - Bottom Left - W
-
-                new Coordinate(10, 0, 10, 'X'), // Third Inner Sector - Top Left - X
-                new Coordinate(15, 0, 10, 'Y'), // Third Inner Sector - Top Center - Y
-                new Coordinate(20, 0, 10, 'Z'), // Third Inner Sector - Top Right - Z
-                new Coordinate(10, 0, 12, '1', true), // Third Inner Sector - Bottom Right - Æ
-                new Coordinate(15, 0, 12, '2', true), // Third Inner Sector - Bottom Center - Ø
-                new Coordinate(20, 0, 12, '3', true), // Third Inner Sector - Bottom Left - Å
-
-            };
+            this.coordinates = w.GetCoordinates();
             
             /*g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'E', 10 } });
             g.add_vertex('B', new Dictionary<char, int>() { { 'A', 10 }, { 'C', 20 } });

@@ -39,6 +39,11 @@ namespace Models
         {
             return this.vertex;
         }
+        public bool CanBeOccupied()
+        {
+            return this.canBeOccupied;
+        }
+
         public Suitcase GiveSuitcase(Suitcase s)
         {
             this.suitcase = s;
