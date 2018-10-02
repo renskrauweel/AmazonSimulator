@@ -12,6 +12,9 @@
         function parseCommand(input = "") {
             return JSON.parse(input);
         }
+        function randomize() {
+            return Math.floor((Math.random() * 3) + 1);
+        }
 
         var exampleSocket;
 
@@ -52,7 +55,7 @@
                 scene.add(plane);
 
                 //Runway
-                var geometry = new THREE.PlaneGeometry(1000, 20);
+                var geometry = new THREE.PlaneGeometry(100, 20);
                 var material = new THREE.MeshBasicMaterial({ color: 0x3a3a3a, side: THREE.DoubleSide });
                 var runway = new THREE.Mesh(geometry, material);
                 runway.rotation.x = Math.PI / 2.0;
@@ -63,73 +66,17 @@
                 //Runway white stripes
                 var geometry = new THREE.PlaneGeometry(2, 1);
                 var material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
-                var stripe0 = new THREE.Mesh(geometry, material);
-                stripe0.rotation.x = Math.PI / 2.0;
-                stripe0.position.x = -15;
-                stripe0.position.z = -10;
-                stripe0.position.y = 0.1;
-                scene.add(stripe0);
-                var stripe1 = new THREE.Mesh(geometry, material);
-                stripe1.rotation.x = Math.PI / 2.0;
-                stripe1.position.x = -10;
-                stripe1.position.z = -10;
-                stripe1.position.y = 0.1;
-                scene.add(stripe1);
-                var stripe2 = new THREE.Mesh(geometry, material);
-                stripe2.rotation.x = Math.PI / 2.0;
-                stripe2.position.x = -5;
-                stripe2.position.z = -10;
-                stripe2.position.y = .01;
-                scene.add(stripe2);
-                var stripe3 = new THREE.Mesh(geometry, material);
-                stripe3.rotation.x = Math.PI / 2.0;
-                stripe3.position.x =  0;
-                stripe3.position.z = -10;
-                stripe3.position.y = .01;
-                scene.add(stripe3);
-                var stripe4 = new THREE.Mesh(geometry, material);
-                stripe4.rotation.x = Math.PI / 2.0;
-                stripe4.position.x = 5;
-                stripe4.position.z = -10;
-                stripe4.position.y = .01;
-                scene.add(stripe4);
-                var stripe5 = new THREE.Mesh(geometry, material);
-                stripe5.rotation.x = Math.PI / 2.0;
-                stripe5.position.x = 10;
-                stripe5.position.z = -10;
-                stripe5.position.y = .01;
-                scene.add(stripe5);
-                var stripe6 = new THREE.Mesh(geometry, material);
-                stripe6.rotation.x = Math.PI / 2.0;
-                stripe6.position.x = 15;
-                stripe6.position.z = -10;
-                stripe6.position.y = .01;
-                scene.add(stripe6);
-                var stripe7 = new THREE.Mesh(geometry, material);
-                stripe7.rotation.x = Math.PI / 2.0;
-                stripe7.position.x = 20;
-                stripe7.position.z = -10;
-                stripe7.position.y = .01;
-                scene.add(stripe7);
-                var stripe8 = new THREE.Mesh(geometry, material);
-                stripe8.rotation.x = Math.PI / 2.0;
-                stripe8.position.x = 25;
-                stripe8.position.z = -10;
-                stripe8.position.y = .01;
-                scene.add(stripe8);
-                var stripe9 = new THREE.Mesh(geometry, material);
-                stripe9.rotation.x = Math.PI / 2.0;
-                stripe9.position.x = 30;
-                stripe9.position.z = -10;
-                stripe9.position.y = .01;
-                scene.add(stripe9);
-                var stripe10 = new THREE.Mesh(geometry, material);
-                stripe10.rotation.x = Math.PI / 2.0;
-                stripe10.position.x = 35;
-                stripe10.position.z = -10;
-                stripe10.position.y = .01;
-                scene.add(stripe10);
-                
+                for (var i = 0; i < 20; i++) {
+                    var x = -32 + i * 5;
+
+                    var stripe = new THREE.Mesh(geometry, material);
+                    stripe.rotation.x = Math.PI / 2.0;
+                    stripe.position.x = x;
+                    stripe.position.z = -10;
+                    stripe.position.y = 0.001;
+                    scene.add(stripe);
+
+                }
 
                 // Roads
                 var geometry = new THREE.PlaneGeometry(20, 1);
@@ -298,7 +245,7 @@
                                         // called when resource is loaded
                                         function (truck) {
                                             var scalar = 150;
-                                            truck.scale.set(2 / scalar, 1 / scalar, 1 / scalar);
+                                            truck.scale.set(1 / scalar, 1 / scalar, 1 / scalar);
                                             console.log(truck);
 
                                             var group = new THREE.Group();
@@ -339,8 +286,8 @@
                                 OBJLoader.setPath('models/');
                                 mtlLoader.setPath('models/');
 
-                                var suitcaseNr = Math.floor((Math.random() * suitcaseCount) + 1);
-                                suitcaseNr = 1;
+                                var suitcaseNr = randomize();
+                                suitcaseNr=1;
 
                                 mtlLoader.load('Suitcase_' + suitcaseNr + '.mtl', function (materials) {
                                     materials.preload();
@@ -352,6 +299,13 @@
                                         'Suitcase_' + suitcaseNr + '.obj',
                                         // called when resource is loaded
                                         function (suitcase) {
+                                            switch (suitcaseNr) {
+                                                case 1:
+                                                    var scalar = 3;
+                                                    suitcase.scale.set(scalar, scalar, scalar);
+                                                    break;
+                                            }
+
                                             console.log(suitcase);
 
                                             //suitcase.children[0].material = new THREE.MeshBasicMaterial({ color: 0xffffff });
@@ -364,8 +318,13 @@
 
                                             var object = worldObjects[command.parameters.guid];
 
+                                            switch (suitcaseNr) {
+                                                case 1:
+                                                    object.position.y = command.parameters.y+0.62;
+                                                    break;
+                                            }
+
                                             object.position.x = command.parameters.x;
-                                            object.position.y = command.parameters.y;
                                             object.position.z = command.parameters.z;
 
                                             object.rotation.x = command.parameters.rotationX;
