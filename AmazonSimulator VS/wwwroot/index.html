@@ -55,24 +55,24 @@
                 scene.add(plane);
 
                 //Runway
-                var geometry = new THREE.PlaneGeometry(150, 32);
+                var geometry = new THREE.PlaneGeometry(100, 20);
                 var material = new THREE.MeshBasicMaterial({ color: 0x3a3a3a, side: THREE.DoubleSide });
                 var runway = new THREE.Mesh(geometry, material);
                 runway.rotation.x = Math.PI / 2.0;
                 runway.position.x = 15;
-                runway.position.z = -16;
+                runway.position.z = -10;
                 scene.add(runway);
 
                 //Runway white stripes
-                var geometry = new THREE.PlaneGeometry(3.5, 1.5);
+                var geometry = new THREE.PlaneGeometry(2, 1);
                 var material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
-                for (var i = 0; i < 17; i++) {
-                    var x = -57 + i * 9;
+                for (var i = 0; i < 20; i++) {
+                    var x = -32 + i * 5;
 
                     var stripe = new THREE.Mesh(geometry, material);
                     stripe.rotation.x = Math.PI / 2.0;
                     stripe.position.x = x;
-                    stripe.position.z = -16;
+                    stripe.position.z = -10;
                     stripe.position.y = 0.001;
                     scene.add(stripe);
 
@@ -144,8 +144,8 @@
 
                         // called when resource is loaded
                         function (garage) {
-                            var scalar = 29;
-                            garage.scale.set(2 / scalar, 1.2 / scalar, 1 / scalar);
+                            var scalar = 50;
+                            garage.scale.set(2 / scalar, 1 / scalar, 1 / scalar);
                             console.log(garage);
 
                             var group = new THREE.Group();
@@ -156,7 +156,7 @@
                            
                             garage.position.x = 15;
                             garage.position.y = 0.001;
-                            garage.position.z = 2.37;
+                            garage.position.z = 3;
                             
                                         },
                         // called when loading is in progresses
@@ -244,7 +244,7 @@
                                         'Airplane.obj',
                                         // called when resource is loaded
                                         function (truck) {
-                                            var scalar = 50;
+                                            var scalar = 150;
                                             truck.scale.set(1 / scalar, 1 / scalar, 1 / scalar);
                                             console.log(truck);
 
@@ -287,7 +287,7 @@
                                 mtlLoader.setPath('models/');
 
                                 var suitcaseNr = randomize();
-                                //suitcaseNr=1;
+                                suitcaseNr=1;
 
                                 mtlLoader.load('Suitcase_' + suitcaseNr + '.mtl', function (materials) {
                                     materials.preload();
@@ -306,20 +306,11 @@
                                                     suitcase.children[1].material = new THREE.MeshBasicMaterial({ wireframe: false, opacity: 0 });
                                                     suitcase.children[1].material.transparent = true;
                                                     break;
-                                                case 2:
-                                                    var scalar = 11;
-                                                    suitcase.scale.set(1/scalar, 1/scalar, 1/scalar);
-                                                    break;
-                                                case 3:
-                                                    var scalar = 3;
-                                                    suitcase.scale.set(1.3 / scalar, 1 / scalar, 1 / scalar);
-                                                    break;
                                             }
-
 
                                             console.log(suitcase);
 
-                                            //suitcase.children[1].material = new THREE.MeshBasicMaterial({ wireframe: true, opacity: 0 });
+                                            //suitcase.children[0].material = new THREE.MeshBasicMaterial({ color: 0xffffff });
 
                                             var group = new THREE.Group();
                                             group.add(suitcase);
@@ -331,6 +322,7 @@
 
                                             switch (suitcaseNr) {
                                                 case 1:
+<<<<<<< HEAD
                                                     object.position.y = command.parameters.y + 0.62;
                                                     object.position.z = command.parameters.z +1;
 
@@ -350,6 +342,9 @@
 
                                                     object.rotation.y = command.parameters.rotationY;
 
+=======
+                                                    object.position.y = command.parameters.y+0.62;
+>>>>>>> parent of d988ed6... random works, airplane/suitcase/garage scaled, airplane centered
                                                     break;
                                             }
 
@@ -357,6 +352,7 @@
 
                                             object.rotation.x = command.parameters.rotationX;
                                             object.rotation.z = command.parameters.rotationZ;
+
                                         },
                                         // called when loading is in progresses
                                         function (xhr) {
