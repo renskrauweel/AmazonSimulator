@@ -306,6 +306,14 @@
                                                     suitcase.children[1].material = new THREE.MeshBasicMaterial({ wireframe: false, opacity: 0 });
                                                     suitcase.children[1].material.transparent = true;
                                                     break;
+                                                case 2:
+                                                    var scalar = 11;
+                                                    suitcase.scale.set(1 / scalar, 1 / scalar, 1 / scalar);
+                                                    break;
+                                                case 3:
+                                                    var scalar = 3;
+                                                    suitcase.scale.set(1.3 / scalar, 1 / scalar, 1 / scalar);
+                                                    break;
                                             }
 
                                             console.log(suitcase);
@@ -324,12 +332,10 @@
                                                 case 1:
                                                     object.position.y = command.parameters.y + 0.62;
                                                     object.position.z = command.parameters.z +1;
-
                                                     break;
                                                 case 2:
                                                     object.position.y = command.parameters.y + 0.04;
                                                     object.position.z = command.parameters.z;
-
                                                     break;
                                                 case 3:
                                                     object.position.y = command.parameters.y + 0.04;
