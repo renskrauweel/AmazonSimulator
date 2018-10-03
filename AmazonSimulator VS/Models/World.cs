@@ -44,6 +44,7 @@ namespace Models {
 
         };
         private Graph g = new Graph();
+        private List<Coordinate> occupationList = new List<Coordinate>();
 
         public World() {
             InitGraph();
@@ -162,7 +163,6 @@ namespace Models {
 
         private void PlaceSuitcases(List<Coordinate> coordinates)
         {
-            List<Coordinate> occupationList = new List<Coordinate>();
             foreach (Coordinate c in coordinates)
             {
                 if (c.CanBeOccupied())
@@ -180,6 +180,11 @@ namespace Models {
                 c.GiveSuitcase(CreateSuitcase(c.GetX(), c.GetY(), c.GetZ()));
                 occupationList.RemoveAt(r);
             }
+        }
+
+        public List<Coordinate> GetOccupationList()
+        {
+            return this.occupationList;
         }
 
         public List<Coordinate> GetCoordinates()

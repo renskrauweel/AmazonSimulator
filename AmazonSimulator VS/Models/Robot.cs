@@ -63,7 +63,7 @@ namespace Models {
 
             if (this.suitcase != null)
             {
-                this.suitcase.Move(x, y, z);
+                this.suitcase.Move(x, y+0.3, z);
             }
         }
     }

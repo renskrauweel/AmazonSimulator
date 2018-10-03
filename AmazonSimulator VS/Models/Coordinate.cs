@@ -55,5 +55,9 @@ namespace Models
             this.suitcase = null;
             return s;
         }
+        public Suitcase GetSuitcase()
+        {
+            return this.suitcase;
+        }
     }
 }
