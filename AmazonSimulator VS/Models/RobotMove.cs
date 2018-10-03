@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class RobotMove : ITask
+    public class RobotMove : IRobotTask
     {
         List<char> verticesToTravelThrough;
         List<Coordinate> coordinates;
@@ -20,13 +20,13 @@ namespace Models
             GetCoordinatesToUse();
         }
 
-        public void StartTask(BaseModel r)
+        public void StartTask(Robot r)
         {
             
             r.MoveThroughCoordinates(coordinates);
         }
 
-        public bool TaskComplete(BaseModel r)
+        public bool TaskComplete(Robot r)
         {
             return Math.Round(r.x, 1) == Math.Round(destination.GetX(), 1) && Math.Round(r.z, 1) == Math.Round(destination.GetZ(), 1);
         }

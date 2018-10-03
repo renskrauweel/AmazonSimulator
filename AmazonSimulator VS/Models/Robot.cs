@@ -5,7 +5,8 @@ using Newtonsoft.Json;
 
 namespace Models {
     public class Robot : BaseModel {
-        private List<ITask> tasks = new List<ITask>();
+        private List<IRobotTask> tasks = new List<IRobotTask>();
+        private Suitcase suitcase;
 
         public Robot(double x, double y, double z, double rotationX, double rotationY, double rotationZ) {
             this.type = "robot";
@@ -27,27 +28,43 @@ namespace Models {
                 if (tasks.First().TaskComplete(this))
                 {
                     tasks.RemoveAt(0);
-
-                    //if (tasks.Count == 0)
-                    //{
-                    //    tasks = null;
-                    //}
-
-                    //tasks.First().StartTask(this);
                 } else
                 {
                     tasks.First().StartTask(this);
                 }
             }
-            //this.MoveToVertex(g.shortest_path('A', 'D'), coordinates, g);
-            //this.Move(this.x + 0.01, this.y, this.z);
 
             return base.Update(tick);
         }
 
-        public void AddTask(ITask task)
+        public void AddTask(IRobotTask task)
         {
             this.tasks.Add(task);
+        }
+
+        public Suitcase GetSuitcase()
+        {
+            return this.suitcase;
+        }
+
+        public void SetSuitcase(Suitcase s)
+        {
+            this.suitcase = s;
+        }
+
+        public void ClearSuitcase()
+        {
+            this.suitcase = null;
+        }
+
+        public override void Move(double x, double y, double z)
+        {
+            base.Move(x, y, z);
+
+            if (this.suitcase != null)
+            {
+                this.suitcase.Move(x, y, z);
+            }
         }
     }
 }
