@@ -47,7 +47,7 @@
 
                 //baggage hall
                 var geometry = new THREE.PlaneGeometry(30, 30, 32);
-                var material = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/floor.jpg"), side: THREE.DoubleSide});
+                var material = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/floor.jpg"), side: THREE.DoubleSide });
                 var plane = new THREE.Mesh(geometry, material);
                 plane.rotation.x = Math.PI / 2.0;
                 plane.position.x = 15;
@@ -118,6 +118,43 @@
                 var sphericalSkybox = new THREE.Mesh(sphericalSkyboxGeometry, sphericalSkyboxMaterial);
                 scene.add(sphericalSkybox);
 
+                //// Instantiate a loader
+                //var loader = new THREE.GLTFLoader();
+
+                //// Optional: Provide a DRACOLoader instance to decode compressed mesh data
+                //THREE.DRACOLoader.setDecoderPath('/examples/js/libs/draco');
+                //loader.setDRACOLoader(new THREE.DRACOLoader());
+
+                //// Load a glTF resource
+                //loader.load(
+                //    // resource URL
+                //    'models/myGarage.glb',
+                //    // called when the resource is loaded
+                //    function (gltf) {
+
+                //        scene.add(gltf.scene);
+
+                //        gltf.animations; // Array<THREE.AnimationClip>
+                //        gltf.scene; // THREE.Scene
+                //        gltf.scenes; // Array<THREE.Scene>
+                //        gltf.cameras; // Array<THREE.Camera>
+                //        gltf.asset; // Object
+
+                //    },
+                //    // called while loading is progressing
+                //    function (xhr) {
+
+                //        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+
+                //    },
+                //    // called when loading has errors
+                //    function (error) {
+
+                //        console.log('An error happened');
+
+                //    }
+                //);
+
 
                 var OBJLoader = new THREE.OBJLoader();
                 var mtlLoader = new THREE.MTLLoader();
@@ -143,12 +180,12 @@
                             group.add(garage);
 
                             scene.add(group);
-                           
+
                             garage.position.x = 15;
                             garage.position.y = 0.001;
                             garage.position.z = 1.429;
-                            
-                                        },
+
+                        },
                         // called when loading is in progresses
                         function (xhr) {
 
@@ -171,7 +208,7 @@
 
                 //Air Traffic Control Tower
                 mtlLoader.load('PUSHILIN_radio_tower.mtl', function (materials) {
-                //mtlLoader.load('atct.mtl', function (materials) {
+                    //mtlLoader.load('atct.mtl', function (materials) {
 
                     materials.preload();
                     materials.wireframe = false;
@@ -185,7 +222,7 @@
                         // called when resource is loaded
                         function (tower) {
                             var scalar = 7;
-                            tower.scale.set(scalar-1, scalar-3, scalar-1);
+                            tower.scale.set(scalar - 1, scalar - 3, scalar - 1);
                             console.log(tower);
 
                             var group = new THREE.Group();
@@ -213,7 +250,7 @@
                         }
                     );
                 });
-            
+
 
 
             }
@@ -367,12 +404,12 @@
                                             scene.add(group);
                                             worldObjects[command.parameters.guid] = group;
 
-                                                var object = worldObjects[command.parameters.guid];
+                                            var object = worldObjects[command.parameters.guid];
 
                                             switch (suitcaseNr) {
                                                 case 1:
                                                     object.position.y = command.parameters.y + 0.62;
-                                                    object.position.z = command.parameters.z +1;
+                                                    object.position.z = command.parameters.z + 1;
                                                     break;
                                                 case 2:
                                                     object.position.y = command.parameters.y + 0.04;
@@ -385,7 +422,7 @@
                                             }
 
                                             object.position.x = command.parameters.x;
-                                            
+
                                             object.rotation.x = command.parameters.rotationX;
                                             object.rotation.y = command.parameters.rotationY;
                                             object.rotation.z = command.parameters.rotationZ;
@@ -430,6 +467,8 @@
     <script src="OrbitControls.js"></script>
     <script src="OBJLoader.js"></script>
     <script src="MTLLoader.js"></script>
+    <script src="GLTFLoader.js"></script>
+    <script src="DRACOLoader.js"></script>
 </body>
 
 </html>
