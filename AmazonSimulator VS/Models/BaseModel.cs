@@ -60,7 +60,7 @@ namespace Models
             if (coordinates.Count > 0)
             {
                 // Move x-axis
-                if (coordinates.First().GetX() != Math.Round(this.x, 1))
+                if (Math.Round(coordinates.First().GetX(), 1) != Math.Round(this.x, 1))
                 {
                     if (coordinates.First().GetX() > this.x)
                     {
@@ -74,7 +74,7 @@ namespace Models
                 else
                 {
                     // Move z-axis
-                    if (coordinates.First().GetZ() != Math.Round(this.z))
+                    if (Math.Round(coordinates.First().GetZ(), 1) != Math.Round(this.z, 1))
                     {
                         if (coordinates.First().GetZ() > this.z)
                         {

@@ -62,7 +62,7 @@ namespace Controllers {
             //MoveToCoordinate(suitcases[1], new Coordinate(20, 0, 18));
 
             r.AddTask(new RobotMove(g.shortest_path('A', 'D'), coordinates, g));
-            r.AddTask(new RobotMove(g.shortest_path('D', 'B'), coordinates, g));
+            r.AddTask(new RobotMove(g.shortest_path('D', 'A'), coordinates, g));
             while (running) {
                 UpdateFrame();
             }

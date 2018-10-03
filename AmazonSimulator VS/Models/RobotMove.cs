@@ -31,7 +31,7 @@ namespace Models
 
         public bool TaskComplete(Robot r)
         {
-            return Math.Floor(r.x) == destination.GetX() && Math.Floor(r.z) == destination.GetZ();
+            return Math.Round(r.x, 1) == Math.Round(destination.GetX(), 1) && Math.Round(r.z, 1) == Math.Round(destination.GetZ(), 1);
         }
 
         private void GetCoordinatesToUse()
