@@ -57,15 +57,10 @@ namespace Controllers {
             r.Move(15, 0, 5); // Move to A
 
             List<Suitcase> suitcases = w.GetSuitcases();
-            //s.Move(25, 0, 10);
-            //MoveToCoordinate(suitcases[0], new Coordinate(20, 0, 12));
-            //MoveToCoordinate(suitcases[1], new Coordinate(20, 0, 18));
+            List<Coordinate> suitcasesCoordinates = w.GetOccupationList();
 
             r.AddTask(new RobotMove(g.shortest_path('A', 'M'), coordinates, g));
-            r.AddTask(new RobotMove(g.shortest_path('M', 'V'), coordinates, g));
-            //r.AddTask(new RobotMove(g.shortest_path('D', 'A'), coordinates, g));
-            //r.AddTask(new RobotMove(g.shortest_path('D', 'G'), coordinates, g));
-            //r.AddTask(new RobotMove(g.shortest_path('G', 'M'), coordinates, g));
+            r.AddTask(new RobotGrab(suitcasesCoordinates[0].GetVertex().Value, suitcases[0], coordinates, g));
             while (running) {
                 UpdateFrame();
             }
