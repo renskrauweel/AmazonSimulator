@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public interface IRobotTask
+    public interface ITask
     {
         void StartTask(Robot r);
 

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Models {
     public class Robot : BaseModel {
-        private List<IRobotTask> tasks = new List<IRobotTask>();
+        private List<ITask> tasks = new List<ITask>();
 
         public Robot(double x, double y, double z, double rotationX, double rotationY, double rotationZ) {
             this.type = "robot";
@@ -45,7 +45,7 @@ namespace Models {
             return base.Update(tick);
         }
 
-        public void AddTask(IRobotTask task)
+        public void AddTask(ITask task)
         {
             this.tasks.Add(task);
         }

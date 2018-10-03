@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class RobotMove : IRobotTask
+    public class RobotMove : ITask
     {
         private bool startupComplete = false;
         private bool complete = false;
