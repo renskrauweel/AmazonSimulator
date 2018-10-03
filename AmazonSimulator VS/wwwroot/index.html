@@ -45,9 +45,9 @@
                 light.intensity = 4;
                 scene.add(light);
 
-                //field
+                //baggage hall
                 var geometry = new THREE.PlaneGeometry(30, 30, 32);
-                var material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+                var material = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/floor.jpg"), side: THREE.DoubleSide});
                 var plane = new THREE.Mesh(geometry, material);
                 plane.rotation.x = Math.PI / 2.0;
                 plane.position.x = 15;
@@ -55,24 +55,24 @@
                 scene.add(plane);
 
                 //Runway
-                var geometry = new THREE.PlaneGeometry(100, 20);
+                var geometry = new THREE.PlaneGeometry(150, 30);
                 var material = new THREE.MeshBasicMaterial({ color: 0x3a3a3a, side: THREE.DoubleSide });
                 var runway = new THREE.Mesh(geometry, material);
                 runway.rotation.x = Math.PI / 2.0;
                 runway.position.x = 15;
-                runway.position.z = -10;
+                runway.position.z = -15;
                 scene.add(runway);
 
                 //Runway white stripes
-                var geometry = new THREE.PlaneGeometry(2, 1);
+                var geometry = new THREE.PlaneGeometry(4, 1.5);
                 var material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
-                for (var i = 0; i < 20; i++) {
-                    var x = -32 + i * 5;
+                for (var i = 0; i < 17; i++) {
+                    var x = -56 + i * 9;
 
                     var stripe = new THREE.Mesh(geometry, material);
                     stripe.rotation.x = Math.PI / 2.0;
                     stripe.position.x = x;
-                    stripe.position.z = -10;
+                    stripe.position.z = -15;
                     stripe.position.y = 0.001;
                     scene.add(stripe);
 
@@ -80,7 +80,7 @@
 
                 // Roads
                 var geometry = new THREE.PlaneGeometry(20, 1);
-                var material = new THREE.MeshBasicMaterial({ color: 0x4f4f4f, side: THREE.DoubleSide });
+                var material = new THREE.MeshBasicMaterial({ color: 0x6f6f6f, side: THREE.DoubleSide });
                 var road = new THREE.Mesh(geometry, material);
                 road.rotation.x = Math.PI / 2.0;
                 road.position.x = 15;
@@ -88,30 +88,16 @@
                 road.position.y = .01;
                 scene.add(road);
                 // Lanes
-                var lane1 = new THREE.Mesh(geometry, material);
-                lane1.rotation.x = Math.PI / 2.0;
-                lane1.position.x = 15;
-                lane1.position.z = 10;
-                lane1.position.y = .01;
-                scene.add(lane1);
-                var lane2 = new THREE.Mesh(geometry, material);
-                lane2.rotation.x = Math.PI / 2.0;
-                lane2.position.x = 15;
-                lane2.position.z = 15;
-                lane2.position.y = .01;
-                scene.add(lane2);
-                var lane3 = new THREE.Mesh(geometry, material);
-                lane3.rotation.x = Math.PI / 2.0;
-                lane3.position.x = 15;
-                lane3.position.z = 20;
-                lane3.position.y = .01;
-                scene.add(lane3);
-                var lane4 = new THREE.Mesh(geometry, material);
-                lane4.rotation.x = Math.PI / 2.0;
-                lane4.position.x = 15;
-                lane4.position.z = 25;
-                lane4.position.y = .01;
-                scene.add(lane4);
+                for (var i = 0; i < 4; i++) {
+                    var z = 10 + i * 5;
+                    var lane = new THREE.Mesh(geometry, material);
+                    lane.rotation.x = Math.PI / 2.0;
+                    lane.position.x = 15;
+                    lane.position.z = z;
+                    lane.position.y = .01;
+                    scene.add(lane);
+                }
+
                 // Sides
                 var geometry = new THREE.PlaneGeometry(1, 21);
                 var sideLeft = new THREE.Mesh(geometry, material);
@@ -132,7 +118,6 @@
                 var sphericalSkybox = new THREE.Mesh(sphericalSkyboxGeometry, sphericalSkyboxMaterial);
                 scene.add(sphericalSkybox);
 
-                
 
                 var OBJLoader = new THREE.OBJLoader();
                 var mtlLoader = new THREE.MTLLoader();
@@ -150,7 +135,7 @@
 
                         // called when resource is loaded
                         function (garage) {
-                            var scalar = 50;
+                            var scalar = 35;
                             garage.scale.set(2 / scalar, 1 / scalar, 1 / scalar);
                             console.log(garage);
 
@@ -158,11 +143,10 @@
                             group.add(garage);
 
                             scene.add(group);
-                            //worldObjects[command.parameters.guid] = group;
                            
                             garage.position.x = 15;
                             garage.position.y = 0.001;
-                            garage.position.z = 3;
+                            garage.position.z = 1.429;
                             
                                         },
                         // called when loading is in progresses
@@ -179,6 +163,57 @@
                         }
                     );
                 });
+
+                var OBJLoader = new THREE.OBJLoader();
+                var mtlLoader = new THREE.MTLLoader();
+                OBJLoader.setPath('models/');
+                mtlLoader.setPath('models/');
+
+                //Air Traffic Control Tower
+                mtlLoader.load('PUSHILIN_radio_tower.mtl', function (materials) {
+                //mtlLoader.load('atct.mtl', function (materials) {
+
+                    materials.preload();
+                    materials.wireframe = false;
+                    OBJLoader.setMaterials(materials);
+                    // load a resource
+                    OBJLoader.load(
+                        // resource URL
+                        'PUSHILIN_radio_tower.obj',
+                        //'atct.obj',
+
+                        // called when resource is loaded
+                        function (tower) {
+                            var scalar = 7;
+                            tower.scale.set(scalar-1, scalar-3, scalar-1);
+                            console.log(tower);
+
+                            var group = new THREE.Group();
+                            group.add(tower);
+
+                            scene.add(group);
+                            //worldObjects[command.parameters.guid] = group;
+
+                            tower.position.x = 2;
+                            tower.position.y = 9;
+                            tower.position.z = 3;
+
+                        },
+                        // called when loading is in progresses
+                        function (xhr) {
+
+                            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+
+                        },
+                        // called when loading has errors
+                        function (error) {
+
+                            console.log('An error happened');
+
+                        }
+                    );
+                });
+            
 
 
             }
@@ -249,13 +284,13 @@
                                         // resource URL
                                         'Airplane.obj',
                                         // called when resource is loaded
-                                        function (truck) {
-                                            var scalar = 150;
-                                            truck.scale.set(1 / scalar, 1 / scalar, 1 / scalar);
-                                            console.log(truck);
+                                        function (airplane) {
+                                            var scalar = 50;
+                                            airplane.scale.set(1 / scalar, 1 / scalar, 1 / scalar);
+                                            console.log(airplane);
 
                                             var group = new THREE.Group();
-                                            group.add(truck);
+                                            group.add(airplane);
 
                                             scene.add(group);
                                             worldObjects[command.parameters.guid] = group;
@@ -332,7 +367,7 @@
                                             scene.add(group);
                                             worldObjects[command.parameters.guid] = group;
 
-                                            var object = worldObjects[command.parameters.guid];
+                                                var object = worldObjects[command.parameters.guid];
 
                                             switch (suitcaseNr) {
                                                 case 1:
