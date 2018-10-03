@@ -287,7 +287,7 @@
                                 mtlLoader.setPath('models/');
 
                                 var suitcaseNr = randomize();
-                                suitcaseNr=1;
+                                //suitcaseNr=1;
 
                                 mtlLoader.load('Suitcase_' + suitcaseNr + '.mtl', function (materials) {
                                     materials.preload();
@@ -322,35 +322,25 @@
 
                                             switch (suitcaseNr) {
                                                 case 1:
-<<<<<<< HEAD
                                                     object.position.y = command.parameters.y + 0.62;
                                                     object.position.z = command.parameters.z +1;
-
-                                                    object.rotation.y = command.parameters.rotationY+5.28;
 
                                                     break;
                                                 case 2:
                                                     object.position.y = command.parameters.y + 0.04;
                                                     object.position.z = command.parameters.z;
 
-                                                    object.rotation.y = command.parameters.rotationY;
-
                                                     break;
                                                 case 3:
                                                     object.position.y = command.parameters.y + 0.04;
                                                     object.position.z = command.parameters.z;
-
-                                                    object.rotation.y = command.parameters.rotationY;
-
-=======
-                                                    object.position.y = command.parameters.y+0.62;
->>>>>>> parent of d988ed6... random works, airplane/suitcase/garage scaled, airplane centered
                                                     break;
                                             }
 
                                             object.position.x = command.parameters.x;
-
+                                            
                                             object.rotation.x = command.parameters.rotationX;
+                                            object.rotation.y = command.parameters.rotationY;
                                             object.rotation.z = command.parameters.rotationZ;
 
                                         },
