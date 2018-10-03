@@ -303,6 +303,8 @@
                                                 case 1:
                                                     var scalar = 3;
                                                     suitcase.scale.set(scalar, scalar, scalar);
+                                                    suitcase.children[1].material = new THREE.MeshBasicMaterial({ wireframe: false, opacity: 0 });
+                                                    suitcase.children[1].material.transparent = true;
                                                     break;
                                                 case 2:
                                                     var scalar = 11;
@@ -330,20 +332,30 @@
                                             switch (suitcaseNr) {
                                                 case 1:
                                                     object.position.y = command.parameters.y + 0.62;
+                                                    object.position.z = command.parameters.z +1;
+
+                                                    object.rotation.y = command.parameters.rotationY+5.28;
+
                                                     break;
                                                 case 2:
                                                     object.position.y = command.parameters.y + 0.04;
+                                                    object.position.z = command.parameters.z;
+
+                                                    object.rotation.y = command.parameters.rotationY;
+
                                                     break;
                                                 case 3:
                                                     object.position.y = command.parameters.y + 0.04;
+                                                    object.position.z = command.parameters.z;
+
+                                                    object.rotation.y = command.parameters.rotationY;
+
                                                     break;
                                             }
 
                                             object.position.x = command.parameters.x;
-                                            object.position.z = command.parameters.z;
 
                                             object.rotation.x = command.parameters.rotationX;
-                                            object.rotation.y = command.parameters.rotationY;
                                             object.rotation.z = command.parameters.rotationZ;
                                         },
                                         // called when loading is in progresses
