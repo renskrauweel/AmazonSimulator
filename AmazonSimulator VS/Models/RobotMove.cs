@@ -7,9 +7,6 @@ namespace Models
 {
     public class RobotMove : ITask
     {
-        private bool startupComplete = false;
-        private bool complete = false;
-
         List<char> verticesToTravelThrough;
         List<Coordinate> coordinates;
         Coordinate destination;
@@ -23,13 +20,13 @@ namespace Models
             GetCoordinatesToUse();
         }
 
-        public void StartTask(Robot r)
+        public void StartTask(BaseModel r)
         {
             
             r.MoveThroughCoordinates(coordinates);
         }
 
-        public bool TaskComplete(Robot r)
+        public bool TaskComplete(BaseModel r)
         {
             return Math.Round(r.x, 1) == Math.Round(destination.GetX(), 1) && Math.Round(r.z, 1) == Math.Round(destination.GetZ(), 1);
         }

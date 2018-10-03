@@ -7,8 +7,8 @@ namespace Models
 {
     public interface ITask
     {
-        void StartTask(Robot r);
+        void StartTask(BaseModel r);
 
-        bool TaskComplete(Robot r);
+        bool TaskComplete(BaseModel r);
     }
 }
