@@ -51,7 +51,7 @@ namespace Models {
             Robot r = CreateRobot(0,0,0);
             r.Move(4.6, 0, 13);
 
-            Truck t = CreateTruck(0, 0, 0);
+            Airplane t = CreateAirplane(0, 0, 0);
             t.Move(15, 1.45, -9);
             t.Rotate(0, Math.PI / 2, 0);
 
@@ -68,9 +68,9 @@ namespace Models {
             return r;
         }
 
-        private Truck CreateTruck(double x, double y, double z)
+        private Airplane CreateAirplane(double x, double y, double z)
         {
-            Truck t = new Truck(x, y, z, 0, 0, 0);
+            Airplane t = new Airplane(x, y, z, 0, 0, 0);
             worldObjects.Add(t);
             return t;
         }
@@ -147,17 +147,17 @@ namespace Models {
             return suitcases;
         }
 
-        public List<Truck> GetTrucks()
+        public List<Airplane> GetAirplanes()
         {
-            List<Truck> trucks = new List<Truck>();
-            foreach (BaseModel truck in worldObjects)
+            List<Airplane> airplanes = new List<Airplane>();
+            foreach (BaseModel airplane in worldObjects)
             {
-                if (truck is Truck)
+                if (airplane is Airplane)
                 {
-                    trucks.Add((Truck)truck);
+                    airplanes.Add((Airplane)airplane);
                 }
             }
-            return trucks;
+            return airplanes;
         }
 
         private void PlaceSuitcases(List<Coordinate> coordinates)

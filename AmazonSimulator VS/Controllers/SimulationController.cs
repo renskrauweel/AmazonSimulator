@@ -50,7 +50,7 @@ namespace Controllers {
             running = true;
 
             // Fetch truck
-            Truck t = w.GetTrucks()[0];
+            Airplane t = w.GetAirplanes()[0];
 
             // Fetch robot
             Robot r = w.GetRobots()[0];

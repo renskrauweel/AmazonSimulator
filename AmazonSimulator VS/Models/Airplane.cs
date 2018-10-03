@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Truck : BaseModel
+    public class Airplane : BaseModel
     {
-        public Truck(double x, double y, double z, double rotationX, double rotationY, double rotationZ)
+        public Airplane(double x, double y, double z, double rotationX, double rotationY, double rotationZ)
         {
-            this.type = "truck";
+            this.type = "airplane";
             this.guid = Guid.NewGuid();
 
             this.x = x;
