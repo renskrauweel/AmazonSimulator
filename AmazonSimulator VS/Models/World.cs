@@ -35,12 +35,12 @@ namespace Models {
             new Coordinate(15, 0, 17, 'V', true), // Second Inner Sector - Bottom Center - V
             new Coordinate(20, 0, 17, 'W', true), // Second Inner Sector - Bottom Left - W
 
-            new Coordinate(10, 0, 10, 'X'), // Third Inner Sector - Top Left - X
-            new Coordinate(15, 0, 10, 'Y'), // Third Inner Sector - Top Center - Y
-            new Coordinate(20, 0, 10, 'Z'), // Third Inner Sector - Top Right - Z
-            new Coordinate(10, 0, 12, '1', true), // Third Inner Sector - Bottom Right - Æ
-            new Coordinate(15, 0, 12, '2', true), // Third Inner Sector - Bottom Center - Ø
-            new Coordinate(20, 0, 12, '3', true), // Third Inner Sector - Bottom Left - Å
+            new Coordinate(10, 0, 20, 'X'), // Third Inner Sector - Top Left - X
+            new Coordinate(15, 0, 20, 'Y'), // Third Inner Sector - Top Center - Y
+            new Coordinate(20, 0, 20, 'Z'), // Third Inner Sector - Top Right - Z
+            new Coordinate(10, 0, 22, '1', true), // Third Inner Sector - Bottom Right - Æ
+            new Coordinate(15, 0, 22, '2', true), // Third Inner Sector - Bottom Center - Ø
+            new Coordinate(20, 0, 22, '3', true), // Third Inner Sector - Bottom Left - Å
 
         };
         private Graph g = new Graph();

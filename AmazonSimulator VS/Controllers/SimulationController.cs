@@ -61,8 +61,11 @@ namespace Controllers {
             //MoveToCoordinate(suitcases[0], new Coordinate(20, 0, 12));
             //MoveToCoordinate(suitcases[1], new Coordinate(20, 0, 18));
 
-            r.AddTask(new RobotMove(g.shortest_path('A', 'D'), coordinates, g));
-            r.AddTask(new RobotMove(g.shortest_path('D', 'A'), coordinates, g));
+            r.AddTask(new RobotMove(g.shortest_path('A', 'M'), coordinates, g));
+            r.AddTask(new RobotMove(g.shortest_path('M', 'V'), coordinates, g));
+            //r.AddTask(new RobotMove(g.shortest_path('D', 'A'), coordinates, g));
+            //r.AddTask(new RobotMove(g.shortest_path('D', 'G'), coordinates, g));
+            //r.AddTask(new RobotMove(g.shortest_path('G', 'M'), coordinates, g));
             while (running) {
                 UpdateFrame();
             }

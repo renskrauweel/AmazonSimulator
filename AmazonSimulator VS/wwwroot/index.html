@@ -106,18 +106,24 @@
                 lane3.position.z = 20;
                 lane3.position.y = .01;
                 scene.add(lane3);
+                var lane4 = new THREE.Mesh(geometry, material);
+                lane4.rotation.x = Math.PI / 2.0;
+                lane4.position.x = 15;
+                lane4.position.z = 25;
+                lane4.position.y = .01;
+                scene.add(lane4);
                 // Sides
-                var geometry = new THREE.PlaneGeometry(1, 16);
+                var geometry = new THREE.PlaneGeometry(1, 21);
                 var sideLeft = new THREE.Mesh(geometry, material);
                 sideLeft.rotation.x = Math.PI / 2.0;
                 sideLeft.position.x = 5;
-                sideLeft.position.z = 12.5;
+                sideLeft.position.z = 15;
                 sideLeft.position.y = .01;
                 scene.add(sideLeft);
                 var sideRight = new THREE.Mesh(geometry, material);
                 sideRight.rotation.x = Math.PI / 2.0;
                 sideRight.position.x = 25;
-                sideRight.position.z = 12.5;
+                sideRight.position.z = 15;
                 sideRight.position.y = .01;
                 scene.add(sideRight);
 
