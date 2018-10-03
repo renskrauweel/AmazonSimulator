@@ -53,7 +53,7 @@ namespace Models {
             r.Move(4.6, 0, 13);
 
             Airplane t = CreateAirplane(0, 0, 0);
-            t.Move(15, 1.45, -9);
+            t.Move(15, 4.3, -15);
             t.Rotate(0, Math.PI / 2, 0);
 
             //Suitcase s1 = CreateSuitcase(0, 0, 0);
