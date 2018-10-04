@@ -19,10 +19,8 @@ namespace Models
         public void StartTask(Robot r)
         {
             r.ClearSuitcase();
-
-            suitcase.x = home.GetX();
-            suitcase.y = home.GetY();
-            suitcase.z = home.GetZ() - 1;
+            
+            suitcase.Move(home.GetX(), home.GetY(), home.GetZ() - 1);
         }
 
         public bool TaskComplete(Robot r)
