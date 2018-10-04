@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class RobotRelease : IRobotTask
+    class RobotRelease : ITask<Robot>
     {
         private Suitcase suitcase;
         private Coordinate home;

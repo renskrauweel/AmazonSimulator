@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public interface ITask
+    public interface ITask<T>
     {
-        void StartTask(BaseModel r);
+        void StartTask(T r);
 
-        bool TaskComplete(BaseModel r);
+        bool TaskComplete(T r);
     }
 }

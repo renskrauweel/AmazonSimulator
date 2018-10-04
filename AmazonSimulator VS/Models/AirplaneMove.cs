@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class AirplaneMove : ITask
+    public class AirplaneMove : ITask<Airplane>
     {
         List<Coordinate> coordinates;
 
-        public void StartTask(BaseModel r)
+        public void StartTask(Airplane r)
         {
             throw new NotImplementedException();
         }
 
-        public bool TaskComplete(BaseModel r)
+        public bool TaskComplete(Airplane r)
         {
             throw new NotImplementedException();
         }

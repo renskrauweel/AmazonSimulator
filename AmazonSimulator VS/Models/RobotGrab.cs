@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class RobotGrab : IRobotTask
+    public class RobotGrab : ITask<Robot>
     {
         private Suitcase suitcase;
         private char pickupNode;
@@ -13,13 +13,15 @@ namespace Models
         private Graph g;
         private Coordinate home = new Coordinate(15, 0, 5);
         private bool walkingHome = false;
+        private bool bringHome = false;
 
-        public RobotGrab(char pickupNode, Suitcase suitcase, List<Coordinate> coordinates, Graph g)
+        public RobotGrab(char pickupNode, Suitcase suitcase, List<Coordinate> coordinates, Graph g, bool bringHome)
         {
             this.pickupNode = pickupNode;
             this.suitcase = suitcase;
             this.coordinates = coordinates;
             this.g = g;
+            this.bringHome = bringHome;
         }
 
         public void StartTask(Robot r)
@@ -30,7 +32,7 @@ namespace Models
 
             r.SetSuitcase(suitcase);
 
-            if (!walkingHome)
+            if (!walkingHome && bringHome)
             {
                 r.AddTask(new RobotMove(g.shortest_path(pickupNode, 'A'), coordinates, g));
                 r.AddTask(new RobotRelease(suitcase, home));
@@ -44,9 +46,12 @@ namespace Models
             if (complete)
             {
                 walkingHome = false;
-                suitcase.x = home.GetX();
-                suitcase.y = home.GetY();
-                suitcase.z = home.GetZ();
+                if (bringHome)
+                {
+                    suitcase.x = home.GetX();
+                    suitcase.y = home.GetY();
+                    suitcase.z = home.GetZ();
+                }
             }
             return complete;
         }
