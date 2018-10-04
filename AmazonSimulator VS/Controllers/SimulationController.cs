@@ -47,6 +47,7 @@ namespace Controllers {
         }
 
         public void Simulate() {
+            Thread.Sleep(2000); // Wait for world to be loaded, improving performance
             running = true;
 
             // Fetch airplane
@@ -55,6 +56,7 @@ namespace Controllers {
             // Fetch robots
             List<Robot> robots = w.GetRobots();
 
+            PlaceAllSuitcases(robots, true);
             FetchAllSuitcases(robots);
 
             while (running) {
@@ -64,58 +66,6 @@ namespace Controllers {
 
         public void EndSimulation() {
             running = false;
-        }
-
-        private void MoveToCoordinate(BaseModel bm, Coordinate coordinate)
-        {
-            double coordinateX = coordinate.GetX();
-            double coordinateY = coordinate.GetY();
-            double coordinateZ = coordinate.GetZ();
-
-            // X
-            ChangeDirection(bm, coordinate);
-            if (bm.x <= coordinateX)
-            {
-                LoopUpX(bm, coordinateX);
-            } else
-            {
-                LoopDownX(bm, coordinateX);
-            }
-            // Y
-            ChangeDirection(bm, coordinate);
-            if (bm.y <= coordinateY)
-            {
-                LoopUpY(bm, coordinateY);
-            }
-            else
-            {
-                LoopDownY(bm, coordinateY);
-            }
-            // Z
-            ChangeDirection(bm, coordinate);
-            if (bm.z <= coordinateZ)
-            {
-                LoopUpZ(bm, coordinateZ);
-            }
-            else
-            {
-                LoopDownZ(bm, coordinateZ);
-            }
-        }
-
-        private void MoveToVertex(BaseModel bm, char vertexStart, char vertexTo)
-        {
-            List<char> verticesToTravelThrough = g.shortest_path(vertexStart, vertexTo);
-            for (int i = verticesToTravelThrough.Count-1; i >= 0; i--)
-            {
-                foreach (Coordinate coordinate in this.coordinates)
-                {
-                    if (coordinate.GetVertex() == verticesToTravelThrough[i])
-                    {
-                        MoveToCoordinate(bm, coordinate);
-                    }
-                }
-            }
         }
 
         private void UpdateFrame()
@@ -131,88 +81,27 @@ namespace Controllers {
             {
                 char vertex = suitcasesCoordinates[i].GetVertex().Value;
                 robots[i].AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
-                robots[i].AddTask(new RobotGrab(vertex, suitcasesCoordinates[i].GetSuitcase(), coordinates, g));
+                robots[i].AddTask(new RobotGrab(vertex, suitcasesCoordinates[i].GetSuitcase(), coordinates, g, true));
             }
         }
 
-        // Movement loop methods
-        private void LoopDownX(BaseModel bm, double coordinateX)
+        private void PlaceAllSuitcases(List<Robot> robots, bool returnHome)
         {
-            for (double x = bm.x; x >= coordinateX; x -= 0.2)
+            List<Coordinate> suitcasesCoordinates = w.GetOccupationList();
+            for (int i = 0; i < suitcasesCoordinates.Count; i++)
             {
-                bm.Move(x, bm.y, bm.z);
-                UpdateFrame();
-            }
-        }
-        private void LoopUpX(BaseModel bm, double coordinateX)
-        {
-            for (double x = bm.x; x <= coordinateX; x += 0.2)
-            {
-                bm.Move(x, bm.y, bm.z);
-                UpdateFrame();
-            }
-        }
-        private void LoopDownY(BaseModel bm, double coordinateY)
-        {
-            for (double y = bm.y; y >= coordinateY; y -= 0.2)
-            {
-                bm.Move(bm.x, y, bm.z);
-                UpdateFrame();
-            }
-        }
-        private void LoopUpY(BaseModel bm, double coordinateY)
-        {
-            for (double y = bm.y; y <= coordinateY; y += 0.2)
-            {
-                bm.Move(bm.x, y, bm.z);
-                UpdateFrame();
-            }
-        }
-        private void LoopDownZ(BaseModel bm, double coordinateZ)
-        {
-            for (double z = bm.z; z >= coordinateZ; z -= 0.2)
-            {
-                bm.Move(bm.x, bm.y, z);
-                UpdateFrame();
-            }
-        }
-        private void LoopUpZ(BaseModel bm, double coordinateZ)
-        {
-            for (double z = bm.z; z <= coordinateZ; z += 0.2)
-            {
-                bm.Move(bm.x, bm.y, z);
-                UpdateFrame();
-            }
-        }
+                char vertex = suitcasesCoordinates[i].GetVertex().Value;
+                Robot r = robots[i];
+                Suitcase s = suitcasesCoordinates[i].GetSuitcase();
+                s.Move(15, 0, 5); // Move to A
+                r.AddTask(new RobotGrab(vertex, s, coordinates, g, false));
+                r.AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
+                r.AddTask(new RobotRelease(s, new Coordinate(r.x, r.y, r.z)));
 
-        private void ChangeDirection(BaseModel bm, Coordinate coordinateToGo)
-        {
-            double degrees90 = Math.PI / 2;
-            double degrees180 = Math.PI;
-            double degrees270 = Math.PI * 1.5;
-            double degrees360 = Math.PI * 2;
-
-            double currentRotationY = bm.rotationY;
-
-            // Move right
-            if (coordinateToGo.GetX() > bm.x && currentRotationY != degrees90)
-            {
-                bm.Rotate(0, degrees90, 0);
-            }
-            // Move left
-            if (coordinateToGo.GetX() < bm.x && currentRotationY != degrees180)
-            {
-                bm.Rotate(0, degrees180, 0);
-            }
-            // Move down
-            if (coordinateToGo.GetZ() > bm.z && currentRotationY != degrees270)
-            {
-                bm.Rotate(0, degrees180, 0);
-            }
-            // Move up
-            if (coordinateToGo.GetZ() < bm.z && currentRotationY != degrees360)
-            {
-                bm.Rotate(0, degrees360, 0);
+                if (returnHome)
+                {
+                    r.AddTask(new RobotMove(g.shortest_path(vertex, 'A'), coordinates, g));
+                }
             }
         }
     }
