@@ -49,18 +49,14 @@ namespace Controllers {
         public void Simulate() {
             running = true;
 
-            // Fetch truck
+            // Fetch airplane
             Airplane t = w.GetAirplanes()[0];
 
-            // Fetch robot
-            Robot r = w.GetRobots()[0];
-            r.Move(15, 0, 5); // Move to A
+            // Fetch robots
+            List<Robot> robots = w.GetRobots();
 
-            List<Suitcase> suitcases = w.GetSuitcases();
-            List<Coordinate> suitcasesCoordinates = w.GetOccupationList();
+            FetchAllSuitcases(robots);
 
-            r.AddTask(new RobotMove(g.shortest_path('A', 'M'), coordinates, g));
-            r.AddTask(new RobotGrab(suitcasesCoordinates[0].GetVertex().Value, suitcases[0], coordinates, g));
             while (running) {
                 UpdateFrame();
             }
@@ -126,6 +122,17 @@ namespace Controllers {
         {
             w.Update(tickTime);
             Thread.Sleep(tickTime);
+        }
+
+        private void FetchAllSuitcases(List<Robot> robots)
+        {
+            List<Coordinate> suitcasesCoordinates = w.GetOccupationList();
+            for (int i = 0; i < suitcasesCoordinates.Count; i++)
+            {
+                char vertex = suitcasesCoordinates[i].GetVertex().Value;
+                robots[i].AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
+                robots[i].AddTask(new RobotGrab(vertex, suitcasesCoordinates[i].GetSuitcase(), coordinates, g));
+            }
         }
 
         // Movement loop methods

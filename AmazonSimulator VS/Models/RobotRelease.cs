@@ -22,12 +22,12 @@ namespace Models
 
             suitcase.x = home.GetX();
             suitcase.y = home.GetY();
-            suitcase.z = home.GetZ() + 1;
+            suitcase.z = home.GetZ() - 1;
         }
 
         public bool TaskComplete(Robot r)
         {
-            return (suitcase.x == home.GetX() && suitcase.y == home.GetY() + 1 && suitcase.z == home.GetZ() + 1);
+            return (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ() - 1);
         }
     }
 }

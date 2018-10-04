@@ -24,23 +24,23 @@ namespace Models {
             new Coordinate(10, 0, 10, 'L'), // First Inner Sector - Top Left - L
             new Coordinate(15, 0, 10, 'M'), // First Inner Sector - Top Center - M
             new Coordinate(20, 0, 10, 'N'), // First Inner Sector - Top Right - N
-            new Coordinate(10, 0, 12, 'O', true), // First Inner Sector - Bottom Right - O
+            new Coordinate(10, 0, 12, 'Q', true), // First Inner Sector - Bottom Right - O
             new Coordinate(15, 0, 12, 'P', true), // First Inner Sector - Bottom Center - P
-            new Coordinate(20, 0, 12, 'Q', true), // First Inner Sector - Bottom Left - Q
+            new Coordinate(20, 0, 12, 'O', true), // First Inner Sector - Bottom Left - Q
 
             new Coordinate(10, 0, 15, 'R'), // Second Inner Sector - Top Left - R
             new Coordinate(15, 0, 15, 'S'), // Second Inner Sector - Top Center - S
             new Coordinate(20, 0, 15, 'T'), // Second Inner Sector - Top Right - T
-            new Coordinate(10, 0, 17, 'U', true), // Second Inner Sector - Bottom Right - U
+            new Coordinate(10, 0, 17, 'W', true), // Second Inner Sector - Bottom Right - U
             new Coordinate(15, 0, 17, 'V', true), // Second Inner Sector - Bottom Center - V
-            new Coordinate(20, 0, 17, 'W', true), // Second Inner Sector - Bottom Left - W
+            new Coordinate(20, 0, 17, 'U', true), // Second Inner Sector - Bottom Left - W
 
             new Coordinate(10, 0, 20, 'X'), // Third Inner Sector - Top Left - X
             new Coordinate(15, 0, 20, 'Y'), // Third Inner Sector - Top Center - Y
             new Coordinate(20, 0, 20, 'Z'), // Third Inner Sector - Top Right - Z
-            new Coordinate(10, 0, 22, '1', true), // Third Inner Sector - Bottom Right - Æ
-            new Coordinate(15, 0, 22, '2', true), // Third Inner Sector - Bottom Center - Ø
-            new Coordinate(20, 0, 22, '3', true), // Third Inner Sector - Bottom Left - Å
+            new Coordinate(10, 0, 22, '3', true), // Third Inner Sector - Bottom Right - 3
+            new Coordinate(15, 0, 22, '2', true), // Third Inner Sector - Bottom Center - 2
+            new Coordinate(20, 0, 22, '1', true), // Third Inner Sector - Bottom Left - 1
 
         };
         private Graph g = new Graph();
@@ -49,8 +49,11 @@ namespace Models {
         public World() {
             InitGraph();
 
-            Robot r = CreateRobot(0,0,0);
-            r.Move(4.6, 0, 13);
+            for (int i = 0; i < 4; i++)
+            {
+                Robot r = CreateRobot(0, 0, 0);
+                r.Move(15, 0, 5);
+            }
 
             Airplane t = CreateAirplane(0, 0, 0);
             t.Move(15, 4.3, -15);
@@ -184,7 +187,15 @@ namespace Models {
 
         public List<Coordinate> GetOccupationList()
         {
-            return this.occupationList;
+            List<Coordinate> suitcaseCoordinates = new List<Coordinate>();
+            foreach (Coordinate coordinate in this.coordinates)
+            {
+                if (coordinate.GetSuitcase() != null)
+                {
+                    suitcaseCoordinates.Add(coordinate);
+                }
+            }
+            return suitcaseCoordinates;
         }
 
         public List<Coordinate> GetCoordinates()
@@ -202,42 +213,42 @@ namespace Models {
             g.add_vertex('A', new Dictionary<char, int>() { { 'B', 10 }, { 'K', 10 } });
 
             //Right Lane
-            g.add_vertex('B', new Dictionary<char, int>() { { 'A', 10 }, { 'C', 20 } });
-            g.add_vertex('C', new Dictionary<char, int>() { { 'B', 20 }, { 'D', 30 }, { 'N', 30 } });
-            g.add_vertex('D', new Dictionary<char, int>() { { 'C', 30 }, { 'E', 40 }, { 'T', 40 } });
-            g.add_vertex('E', new Dictionary<char, int>() { { 'D', 40 }, { 'F', 50 }, { 'Z', 50 } });
-            g.add_vertex('F', new Dictionary<char, int>() { { 'E', 50 }, { 'G', 70 } });
+            g.add_vertex('B', new Dictionary<char, int>() { { 'A', 10 }, { 'C', 5 } });
+            g.add_vertex('C', new Dictionary<char, int>() { { 'B', 5 }, { 'D', 5 }, { 'N', 5 } });
+            g.add_vertex('D', new Dictionary<char, int>() { { 'C', 5 }, { 'E', 5 }, { 'T', 5 } });
+            g.add_vertex('E', new Dictionary<char, int>() { { 'D', 5 }, { 'F', 5 }, { 'Z', 5 } });
+            g.add_vertex('F', new Dictionary<char, int>() { { 'E', 5 }, { 'G', 20 } });
 
             //Left Lane
-            g.add_vertex('K', new Dictionary<char, int>() { { 'A', 10 }, { 'J', 20 } });
-            g.add_vertex('J', new Dictionary<char, int>() { { 'K', 20 }, { 'I', 30 }, { 'L', 30 } });
-            g.add_vertex('I', new Dictionary<char, int>() { { 'J', 30 }, { 'H', 40 }, { 'R', 40 } });
-            g.add_vertex('H', new Dictionary<char, int>() { { 'I', 40 }, { 'G', 50 }, { 'X', 50 } });
-            g.add_vertex('G', new Dictionary<char, int>() { { 'H', 50 }, { 'F', 70 } });
+            g.add_vertex('K', new Dictionary<char, int>() { { 'A', 10 }, { 'J', 5 } });
+            g.add_vertex('J', new Dictionary<char, int>() { { 'K', 5 }, { 'I', 5 }, { 'L', 5 } });
+            g.add_vertex('I', new Dictionary<char, int>() { { 'J', 5 }, { 'H', 5 }, { 'R', 5 } });
+            g.add_vertex('H', new Dictionary<char, int>() { { 'I', 5 }, { 'G', 5 }, { 'X', 5 } });
+            g.add_vertex('G', new Dictionary<char, int>() { { 'H', 5 }, { 'F', 20 } });
 
             //First Inner Sector
-            g.add_vertex('L', new Dictionary<char, int>() { { 'J', 30 }, { 'M', 50 }, { 'Q', 40 } });
-            g.add_vertex('M', new Dictionary<char, int>() { { 'N', 40 }, { 'L', 50 }, { 'P', 50 } });
-            g.add_vertex('N', new Dictionary<char, int>() { { 'C', 30 }, { 'M', 40 }, { 'O', 40 } });
-            g.add_vertex('O', new Dictionary<char, int>() { { 'N', 40 } });
-            g.add_vertex('P', new Dictionary<char, int>() { { 'M', 50 } });
-            g.add_vertex('Q', new Dictionary<char, int>() { { 'L', 40 } });
+            g.add_vertex('L', new Dictionary<char, int>() { { 'J', 5 }, { 'M', 5 }, { 'Q', 2 } });
+            g.add_vertex('M', new Dictionary<char, int>() { { 'N', 5 }, { 'L', 5 }, { 'P', 2 } });
+            g.add_vertex('N', new Dictionary<char, int>() { { 'C', 5 }, { 'M', 5 }, { 'O', 2 } });
+            g.add_vertex('O', new Dictionary<char, int>() { { 'N', 2 } });
+            g.add_vertex('P', new Dictionary<char, int>() { { 'M', 2 } });
+            g.add_vertex('Q', new Dictionary<char, int>() { { 'L', 2 } });
 
             //Second Inner Sector
-            g.add_vertex('R', new Dictionary<char, int>() { { 'I', 40 }, { 'S', 60 }, { 'W', 50 } });
-            g.add_vertex('S', new Dictionary<char, int>() { { 'T', 50 }, { 'R', 60 }, { 'V', 60 } });
-            g.add_vertex('T', new Dictionary<char, int>() { { 'D', 40 }, { 'S', 50 }, { 'U', 50 } });
-            g.add_vertex('U', new Dictionary<char, int>() { { 'T', 50 } });
-            g.add_vertex('V', new Dictionary<char, int>() { { 'S', 60 } });
-            g.add_vertex('W', new Dictionary<char, int>() { { 'R', 50 } });
+            g.add_vertex('R', new Dictionary<char, int>() { { 'I', 5 }, { 'S', 5 }, { 'W', 2 } });
+            g.add_vertex('S', new Dictionary<char, int>() { { 'T', 5 }, { 'R', 5 }, { 'V', 2 } });
+            g.add_vertex('T', new Dictionary<char, int>() { { 'D', 5 }, { 'S', 5 }, { 'U', 2 } });
+            g.add_vertex('U', new Dictionary<char, int>() { { 'T', 2 } });
+            g.add_vertex('V', new Dictionary<char, int>() { { 'S', 2 } });
+            g.add_vertex('W', new Dictionary<char, int>() { { 'R', 2 } });
 
             //Third Inner Sector
-            g.add_vertex('X', new Dictionary<char, int>() { { 'H', 50 }, { 'Y', 70 }, { '3', 60 } });
-            g.add_vertex('Y', new Dictionary<char, int>() { { 'Z', 60 }, { 'X', 70 }, { '2', 70 } });
-            g.add_vertex('Z', new Dictionary<char, int>() { { 'E', 50 }, { 'Y', 60 }, { '1', 60 } });
-            g.add_vertex('1', new Dictionary<char, int>() { { 'Z', 60 } });
-            g.add_vertex('2', new Dictionary<char, int>() { { 'Y', 70 } });
-            g.add_vertex('3', new Dictionary<char, int>() { { 'X', 60 } });
+            g.add_vertex('X', new Dictionary<char, int>() { { 'H', 5 }, { 'Y', 5 }, { '3', 2 } });
+            g.add_vertex('Y', new Dictionary<char, int>() { { 'Z', 5 }, { 'X', 5 }, { '2', 2 } });
+            g.add_vertex('Z', new Dictionary<char, int>() { { 'E', 5 }, { 'Y', 5 }, { '1', 2 } });
+            g.add_vertex('1', new Dictionary<char, int>() { { 'Z', 2 } });
+            g.add_vertex('2', new Dictionary<char, int>() { { 'Y', 2 } });
+            g.add_vertex('3', new Dictionary<char, int>() { { 'X', 2 } });
         }
     }
 
