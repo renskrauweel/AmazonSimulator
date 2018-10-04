@@ -95,7 +95,7 @@ namespace Controllers {
                 Suitcase s = suitcasesCoordinates[i].GetSuitcase();
                 r.AddTask(new RobotGrab(vertex, s, coordinates, g, false));
                 r.AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
-                r.AddTask(new RobotRelease(s, new Coordinate(s.x, s.y, s.z))); // Robot staat nog op home!
+                r.AddTask(new RobotRelease(s, new Coordinate(s.x, s.y, s.z)));
                 s.Move(15, 0, 5); // Move to A
 
                 if (returnHome)
