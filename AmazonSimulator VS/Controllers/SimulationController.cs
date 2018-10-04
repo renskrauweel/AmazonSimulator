@@ -93,10 +93,10 @@ namespace Controllers {
                 char vertex = suitcasesCoordinates[i].GetVertex().Value;
                 Robot r = robots[i];
                 Suitcase s = suitcasesCoordinates[i].GetSuitcase();
-                s.Move(15, 0, 5); // Move to A
                 r.AddTask(new RobotGrab(vertex, s, coordinates, g, false));
                 r.AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
-                r.AddTask(new RobotRelease(s, new Coordinate(r.x, r.y, r.z)));
+                r.AddTask(new RobotRelease(s, new Coordinate(s.x, s.y, s.z))); // Robot staat nog op home!
+                s.Move(15, 0, 5); // Move to A
 
                 if (returnHome)
                 {
