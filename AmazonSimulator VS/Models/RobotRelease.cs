@@ -9,11 +9,13 @@ namespace Models
     {
         private Suitcase suitcase;
         private Coordinate home;
+        private bool updateSuitcaseCountForTransport;
 
-        public RobotRelease(Suitcase suitcase, Coordinate home)
+        public RobotRelease(Suitcase suitcase, Coordinate home, bool updateSuitcaseCountForTransport = false)
         {
             this.suitcase = suitcase;
             this.home = home;
+            this.updateSuitcaseCountForTransport = updateSuitcaseCountForTransport;
         }
 
         public void StartTask(Robot r)
@@ -25,7 +27,12 @@ namespace Models
 
         public bool TaskComplete(Robot r)
         {
-            return (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ() - 1);
+            bool complete = (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ() - 1);
+            if (complete && updateSuitcaseCountForTransport)
+            {
+                Controllers.SimulationController.transportSuitcasesCount++;
+            }
+            return complete;
         }
     }
 }

@@ -9,11 +9,40 @@
 <body style="margin:0px;padding:0px;overflow:hidden;">
 
     <script>
+        var lightsCount = 4;
+        var repeater;
         function parseCommand(input = "") {
             return JSON.parse(input);
         }
         function randomize() {
             return Math.floor((Math.random() * 3) + 1);
+        }
+        function blinkFlashingLight() {
+            if (flashingLight1.emissiveIntensity == 1) {
+                for (var i = 1; i <= lightsCount; i++) {
+                    this["flashingLight" + i].emissiveIntensity = 0;
+                    this["sphereLight" + i].intensity = 0;
+                }
+            } else {
+                for (var i = 1; i <= lightsCount; i++) {
+                    this["flashingLight" + i].emissiveIntensity = 1;
+                    this["sphereLight" + i].intensity = 1;
+                }
+            }
+            repeater = setTimeout(blinkFlashingLight, 3000);
+        }
+        function initAirplaneLights() {
+            for (var i = 1; i <= lightsCount; i++) {
+                this["flashingLight" + i] = new THREE.MeshStandardMaterial({
+                    emissive: 0xf40000,
+                    emissiveIntensity: 1,
+                    color: 0xf40000,
+                    roughness: 1
+                });
+                this["sphereLight" + i] = new THREE.PointLight(0xf40000, 1, 100, 2);
+            }
+
+            blinkFlashingLight();
         }
 
 
@@ -56,6 +85,8 @@
                 placeSkybox(scene);
                 placeGarage(scene);
                 placeRadioTower(scene);
+
+                initAirplaneLights();
             }
 
             function onWindowResize() {
@@ -76,7 +107,6 @@
 
                 if (command.command == "update") {
                     if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0) {
-                        console.log(command.parameters.type);
                         switch (command.parameters.type) {
                             case "robot":
                                 var geometry = new THREE.BoxGeometry(0.9, 0.3, 0.9);
@@ -117,10 +147,20 @@
                                         function (airplane) {
                                             var scalar = 50;
                                             airplane.scale.set(1 / scalar, 1 / scalar, 1 / scalar);
-                                            console.log(airplane);
 
                                             var group = new THREE.Group();
                                             group.add(airplane);
+
+                                            // lights
+                                            var sphereGeometry = new THREE.SphereGeometry(.1, 32, 32);
+                                            for (var i = 1; i <= lightsCount; i++) {
+                                                this["sphereLight" + i].add(new THREE.Mesh(sphereGeometry, flashingLight1));
+                                                group.add(this["sphereLight" + i]);
+                                            }
+                                            sphereLight1.position.set(6, .8, -14);
+                                            sphereLight2.position.set(-6, .8, -14);
+                                            sphereLight3.position.set(15, -0.8, -7);
+                                            sphereLight4.position.set(-15, -0.8, -7);
 
                                             scene.add(group);
                                             worldObjects[command.parameters.guid] = group;
@@ -136,17 +176,9 @@
                                             object.rotation.z = command.parameters.rotationZ;
 
                                         },
-                                        // called when loading is in progresses
-                                        function (xhr) {
-
-                                            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
-                                        },
                                         // called when loading has errors
                                         function (error) {
-
-                                            console.log('An error happened');
-
+                                            console.log('An error happened - airplane');
                                         }
                                     );
                                 });
@@ -187,10 +219,6 @@
                                                     break;
                                             }
 
-                                            console.log(suitcase);
-
-                                            //suitcase.children[0].material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-
                                             var group = new THREE.Group();
                                             group.add(suitcase);
 
@@ -221,16 +249,10 @@
                                             object.rotation.z = command.parameters.rotationZ;
 
                                         },
-                                        // called when loading is in progresses
-                                        function (xhr) {
-
-                                            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
-                                        },
                                         // called when loading has errors
                                         function (error) {
 
-                                            console.log('An error happened');
+                                            console.log('An error happened - suitcase');
 
                                         }
                                     );
