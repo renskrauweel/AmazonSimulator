@@ -55,9 +55,9 @@ namespace Models {
                 r.Move(15, 0, 5);
             }
 
-            Airplane t = CreateAirplane(0, 0, 0);
-            t.Move(15, 4.3, -15);
-            t.Rotate(0, Math.PI / 2, 0);
+            Airplane a = CreateAirplane(0, 0, 0);
+            a.Move(15, 4.3, -15);
+            a.Rotate(0, Math.PI / 2, 0);
 
             //Suitcase s1 = CreateSuitcase(0, 0, 0);
             //s1.Move(20, 0, 11);

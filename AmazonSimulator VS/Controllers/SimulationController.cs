@@ -51,7 +51,7 @@ namespace Controllers {
             running = true;
 
             // Fetch airplane
-            Airplane t = w.GetAirplanes()[0];
+            Airplane a = w.GetAirplanes()[0];
 
             // Fetch robots
             List<Robot> robots = w.GetRobots();
