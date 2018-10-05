@@ -18,7 +18,7 @@
         function placeBaggageHall(scene) {
             //baggage hall
             var geometry = new THREE.PlaneGeometry(30, 30, 32);
-            var material = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/floor.jpg"), side: THREE.DoubleSide });
+            var material = new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/floor.jpg"), side: THREE.DoubleSide });
             var plane = new THREE.Mesh(geometry, material);
             plane.rotation.x = Math.PI / 2.0;
             plane.position.x = 15;
@@ -28,7 +28,7 @@
         function placeRunway(scene) {
             //Runway
             var geometry = new THREE.PlaneGeometry(150, 30);
-            var material = new THREE.MeshBasicMaterial({ color: 0x3a3a3a, side: THREE.DoubleSide });
+            var material = new THREE.MeshPhongMaterial({ color: 0x3a3a3a, side: THREE.DoubleSide });
             var runway = new THREE.Mesh(geometry, material);
             runway.rotation.x = Math.PI / 2.0;
             runway.position.x = 15;
@@ -37,7 +37,7 @@
 
             //Runway white stripes
             var geometry = new THREE.PlaneGeometry(4, 1.5);
-            var material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+            var material = new THREE.MeshPhongMaterial({ color: 0xffffff, side: THREE.DoubleSide });
             for (var i = 0; i < 17; i++) {
                 var x = -56 + i * 9;
 
@@ -53,7 +53,7 @@
         function placeRoads(scene) {
             // Roads
             var geometry = new THREE.PlaneGeometry(20, 1);
-            var material = new THREE.MeshBasicMaterial({ color: 0x6f6f6f, side: THREE.DoubleSide });
+            var material = new THREE.MeshPhongMaterial({ color: 0x6f6f6f, side: THREE.DoubleSide });
             var road = new THREE.Mesh(geometry, material);
             road.rotation.x = Math.PI / 2.0;
             road.position.x = 15;
@@ -88,7 +88,7 @@
         }
         function placeSkybox(scene) {
             var sphericalSkyboxGeometry = new THREE.SphereGeometry(500, 32, 32);
-            var sphericalSkyboxMaterial = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/Street View 360.jpg"), side: THREE.DoubleSide });
+            var sphericalSkyboxMaterial = new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/Street View 360.jpg"), side: THREE.DoubleSide });
             var sphericalSkybox = new THREE.Mesh(sphericalSkyboxGeometry, sphericalSkyboxMaterial);
             scene.add(sphericalSkybox);
         }
@@ -257,6 +257,10 @@
                 light.intensity = 4;
                 scene.add(light);
 
+                var light = new THREE.PointLight(0xff0000, 1, 100);
+                light.position.set(50, 50, 50);
+                scene.add(light);
+
                 placeBaggageHall(scene);
                 placeRunway(scene);
                 placeRoads(scene);
@@ -288,12 +292,12 @@
                             case "robot":
                                 var geometry = new THREE.BoxGeometry(0.9, 0.3, 0.9);
                                 var cubeMaterials = [
-                                    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_side.png"), side: THREE.DoubleSide }), //LEFT
-                                    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_side.png"), side: THREE.DoubleSide }), //RIGHT
-                                    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_top.png"), side: THREE.DoubleSide }), //TOP
-                                    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_bottom.png"), side: THREE.DoubleSide }), //BOTTOM
-                                    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //FRONT
-                                    new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //BACK
+                                    new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/robot_side.png"), side: THREE.DoubleSide }), //LEFT
+                                    new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/robot_side.png"), side: THREE.DoubleSide }), //RIGHT
+                                    new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/robot_top.png"), side: THREE.DoubleSide }), //TOP
+                                    new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/robot_bottom.png"), side: THREE.DoubleSide }), //BOTTOM
+                                    new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //FRONT
+                                    new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/robot_front.png"), side: THREE.DoubleSide }), //BACK
                                 ];
                                 var material = new THREE.MeshFaceMaterial(cubeMaterials);
                                 var robot = new THREE.Mesh(geometry, material);
@@ -381,7 +385,7 @@
                                                 case 1:
                                                     var scalar = 3;
                                                     suitcase.scale.set(scalar, scalar, scalar);
-                                                    suitcase.children[1].material = new THREE.MeshBasicMaterial({ wireframe: false, opacity: 0 });
+                                                    suitcase.children[1].material = new THREE.MeshPhongMaterial({ wireframe: false, opacity: 0 });
                                                     suitcase.children[1].material.transparent = true;
                                                     break;
                                                 case 2:
