@@ -69,7 +69,7 @@ namespace Controllers {
                     foreach (Coordinate c in w.GetOccupationList())
                     {
                         Suitcase s = c.GetSuitcase();
-                        s.Move(s.x, s.y-2, s.z);
+                        s.Move(100, 100, 100);
                     }
                     // Airplane liftoff
                     a.AddTask(new AirplaneMove(new Coordinate(70, 4.3, -15), true)); //punt 3
