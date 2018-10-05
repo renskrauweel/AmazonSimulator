@@ -19,6 +19,8 @@ namespace Controllers {
         private Graph g = new Graph();
         private List<Coordinate> coordinates;
 
+        public static int transportSuitcasesCount = 0;
+
         public SimulationController(World w) {
             this.w = w;
             this.g = w.GetGraph();
@@ -52,7 +54,6 @@ namespace Controllers {
 
             // Fetch airplane
             Airplane a = w.GetAirplanes()[0];
-            a.AddTask(new AirplaneMove(new Coordinate(70, 4.3, -15)));
 
             // Fetch robots
             List<Robot> robots = w.GetRobots();
@@ -61,6 +62,17 @@ namespace Controllers {
             FetchAllSuitcases(robots);
 
             while (running) {
+                if (transportSuitcasesCount == 4)
+                {
+                    // Move out of view
+                    foreach (Coordinate c in w.GetOccupationList())
+                    {
+                        Suitcase s = c.GetSuitcase();
+                        s.Move(s.x, s.y-2, s.z);
+                    }
+                    // Airplane liftoff
+                    a.AddTask(new AirplaneMove(new Coordinate(70, 4.3, -15)));
+                }
                 UpdateFrame();
             }
         }

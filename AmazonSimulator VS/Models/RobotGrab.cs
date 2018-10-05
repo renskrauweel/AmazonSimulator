@@ -35,7 +35,7 @@ namespace Models
             if (!walkingHome && bringHome)
             {
                 r.AddTask(new RobotMove(g.shortest_path(pickupNode, 'A'), coordinates, g));
-                r.AddTask(new RobotRelease(suitcase, home));
+                r.AddTask(new RobotRelease(suitcase, home, true));
                 walkingHome = true;
             }
         }
