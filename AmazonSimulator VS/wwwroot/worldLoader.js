@@ -171,8 +171,8 @@
 
                 // called when resource is loaded
                 function (tower) {
-                    var scalar = 7;
-                    tower.scale.set(scalar - 1, scalar - 3, scalar - 1);
+                    var scalar = 10;
+                    tower.scale.set(scalar, scalar - 2.5, scalar - 1);
 
                     var group = new THREE.Group();
                     group.add(tower);
@@ -180,9 +180,9 @@
                     scene.add(group);
                     //worldObjects[command.parameters.guid] = group;
 
-                    tower.position.x = 2;
-                    tower.position.y = 9;
-                    tower.position.z = 3;
+                    tower.position.x = 2.5;
+                    tower.position.y = 17;
+                    tower.position.z = 2.5;
 
                 },
                 // called when loading has errors

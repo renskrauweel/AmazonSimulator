@@ -49,7 +49,7 @@ namespace Controllers {
         }
 
         public void Simulate() {
-            Thread.Sleep(2000); // Wait for world to be loaded, improving performance
+            Thread.Sleep(3000); // Wait for world to be loaded, improving performance
             running = true;
 
             // Fetch airplane
@@ -74,8 +74,9 @@ namespace Controllers {
                     // Airplane liftoff
                     a.AddTask(new AirplaneMove(new Coordinate(70, 4.3, -15), true)); //punt 3
                     a.AddTask(new AirplaneMove(new Coordinate(125, 59, -15), true, true)); // punt 4
-                    a.AddTask(new AirplaneMove(new Coordinate(-15, 4.3, -15), false, true)); //punt 1
-                    a.AddTask(new AirplaneMove(new Coordinate(20, 4.3, -15))); //punt 2
+                    a.AddTask(new AirplaneMove(new Coordinate(-50, 4.3, -15), false, true)); //punt 1
+                    a.AddTask(new AirplaneMove(new Coordinate(15, 4.3, -15))); //punt 2
+                    transportSuitcasesCount = 0;
                 }
                 UpdateFrame();
             }

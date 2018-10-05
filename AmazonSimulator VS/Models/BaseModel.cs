@@ -23,7 +23,7 @@ namespace Models
         public double rotationY = 0;
         public double rotationZ = 0;
 
-        private double speed = 0.1;
+        private double speed = 0.25;
         private bool xRotated = false;
         private bool zRotated = false;
 

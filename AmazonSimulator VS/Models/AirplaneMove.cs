@@ -9,7 +9,7 @@ namespace Models
     {
         Coordinate destination;
         double Acc = 0;
-        double Dec = 2.5;
+        double Dec = 2;
         bool liftOff = false;
         bool Flying = false;
         //bool SpeedUp = false;
@@ -25,9 +25,17 @@ namespace Models
 
         public void StartTask(Airplane a)
         {
-            if (!(liftOff && Flying))
+            if (!liftOff && !Flying)
             {
-                a.Move(a.x + 1, a.y, a.z);
+                if (a.x >= 14)
+                {
+                    a.Move(a.x =15, a.y, a.z);
+                }
+                else
+                {
+                    a.Move(a.x + 1, a.y, a.z);
+                }
+                
             }
 
             if (liftOff && !Flying)
@@ -52,29 +60,30 @@ namespace Models
 
             if (liftOff && Flying)
             {
-                //if (a.rotationZ >= (Math.PI/6))
+                //if (a.rotationZ >= (Math.PI/ 6))
                 //{
                 //    a.Rotate(a.rotationX, a.rotationY, a.rotationZ);
                 //}
                 //else
                 //{
-                //    a.Rotate(a.rotationX, a.rotationY, a.rotationZ + (Math.PI / 20));
+                //    a.Rotate(a.rotationX, a.rotationY+0.7, a.rotationZ);
                 //}
-                a.Move(a.x + 1, a.y + .5, a.z);
+                a.Move(a.x + 1, a.y + 0.5, a.z);
             }
 
             if (!liftOff && Flying)
             {
 
-                if (a.rotationY <= 0)
-                {
-                    a.Rotate(a.rotationX, a.rotationY, a.rotationZ);
-                }
-                else
-                {
-                    a.Rotate(a.rotationX, a.rotationY, a.rotationZ);
-                }
+                //if (a.rotationZ <= 0)
+                //{
+                //    a.Rotate(a.rotationX, a.rotationY, a.rotationZ);
+                //}
+                //else
+                //{
+                //    a.Rotate(a.rotationX, a.rotationY+0.7, a.rotationZ);
+                //}
 
+                /*
                 if (Dec < 1 || Dec == 1)
                 {
                     Dec = 1;
@@ -83,7 +92,23 @@ namespace Models
                 {
                     Dec -= 0.05;
                 }
-                a.Move(a.x + Dec, a.y - 1, a.z);
+                */
+                if (a.y <= 5.3)
+                {
+                    if (a.x >= -52)
+                    {
+                        a.Move(a.x = -50, a.y = 4.3, a.z);
+                    }
+                    
+                    else
+                    {
+                        a.Move(a.x + Dec, a.y = 4.3, a.z);
+                    }
+                }
+                else
+                {
+                    a.Move(a.x + Dec, a.y - 1, a.z);
+                }
             }
         }
 
@@ -93,9 +118,9 @@ namespace Models
 
             if (Complete && liftOff && Flying)
             {
-                a.Move(-60, 59, -15);
+                a.Move(-152.5, 54.3, -15);
             }
-            //if (Complete && !(liftOff && Flying)) { }
+            if (Complete && !(liftOff && Flying)) { } //To Trigger robots when on point 2 (aka home)
             return Complete;
         }
     }
