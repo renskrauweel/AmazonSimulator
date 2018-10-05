@@ -52,6 +52,7 @@ namespace Controllers {
 
             // Fetch airplane
             Airplane a = w.GetAirplanes()[0];
+            a.AddTask(new AirplaneMove(new Coordinate(70, 4.3, -15)));
 
             // Fetch robots
             List<Robot> robots = w.GetRobots();

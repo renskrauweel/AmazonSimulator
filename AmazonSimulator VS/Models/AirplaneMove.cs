@@ -7,16 +7,30 @@ namespace Models
 {
     public class AirplaneMove : ITask<Airplane>
     {
-        List<Coordinate> coordinates;
+        Coordinate destination;
+        double x=0;
 
-        public void StartTask(Airplane r)
+        public AirplaneMove(Coordinate destination)
         {
-            throw new NotImplementedException();
+            this.destination = destination;
         }
 
-        public bool TaskComplete(Airplane r)
+        public void StartTask(Airplane a)
         {
-            throw new NotImplementedException();
+            if (x>2 || x==2)
+            {
+                x = 2;
+            }
+            else
+            {
+                x += 0.05;
+            }
+            a.Move(a.x + x, a.y, a.z);
+        }
+
+        public bool TaskComplete(Airplane a)
+        {
+            return Math.Round(a.x, 0) == Math.Round(destination.GetX(), 0) && Math.Round(a.z, 0) == Math.Round(destination.GetZ(), 0);
         }
     }
 }

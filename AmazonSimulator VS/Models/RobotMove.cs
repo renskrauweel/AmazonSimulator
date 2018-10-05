@@ -22,7 +22,6 @@ namespace Models
 
         public void StartTask(Robot r)
         {
-            
             r.MoveThroughCoordinates(coordinates);
         }
 
