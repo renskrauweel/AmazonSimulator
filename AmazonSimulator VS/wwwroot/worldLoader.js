@@ -132,7 +132,6 @@
                 function (garage) {
                     var scalar = 35;
                     garage.scale.set(2 / scalar, 1 / scalar, 1 / scalar);
-                    console.log(garage);
 
                     var group = new THREE.Group();
                     group.add(garage);
@@ -146,7 +145,7 @@
                 },
                 // called when loading has errors
                 function (error) {
-                    console.log('An error happened');
+                    console.log('An error happened - garage');
                 }
             );
         });
@@ -174,7 +173,6 @@
                 function (tower) {
                     var scalar = 7;
                     tower.scale.set(scalar - 1, scalar - 3, scalar - 1);
-                    console.log(tower);
 
                     var group = new THREE.Group();
                     group.add(tower);
@@ -189,7 +187,7 @@
                 },
                 // called when loading has errors
                 function (error) {
-                    console.log('An error happened');
+                    console.log('An error happened - radiotower');
                 }
             );
         });
