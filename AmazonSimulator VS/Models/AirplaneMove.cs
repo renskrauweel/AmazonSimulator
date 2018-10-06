@@ -120,7 +120,9 @@ namespace Models
             {
                 a.Move(-152.5, 54.3, -15);
             }
-            if (Complete && !(liftOff && Flying)) { } //To Trigger robots when on point 2 (aka home)
+            if (Complete && !liftOff && !Flying) {
+                a.SetLanded(true);
+            } //To Trigger robots when on point 2 (aka home)
             return Complete;
         }
     }

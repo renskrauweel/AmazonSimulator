@@ -49,7 +49,7 @@ namespace Controllers {
         }
 
         public void Simulate() {
-            Thread.Sleep(3000); // Wait for world to be loaded, improving performance
+            Thread.Sleep(4000); // Wait for world to be loaded, improving performance
             running = true;
 
             // Fetch airplane
@@ -59,7 +59,6 @@ namespace Controllers {
             // Fetch robots
             List<Robot> robots = w.GetRobots();
 
-            PlaceAllSuitcases(robots, true);
             FetchAllSuitcases(robots);
 
             while (running) {
@@ -78,6 +77,18 @@ namespace Controllers {
                     a.AddTask(new AirplaneMove(new Coordinate(15, 4.3, -15))); //punt 2
                     transportSuitcasesCount = 0;
                 }
+                if (a.GetLanded())
+                {
+                    // Move all suitcases to A
+                    foreach (Coordinate c in w.GetOccupationList())
+                    {
+                        Suitcase s = c.GetSuitcase();
+                        s.Move(15, 0, 5); // Move to A
+                    }
+                    PlaceAllSuitcases(robots, true);
+                    a.SetLanded(false);
+                }
+
                 UpdateFrame();
             }
         }
@@ -111,9 +122,10 @@ namespace Controllers {
                 char vertex = suitcasesCoordinates[i].GetVertex().Value;
                 Robot r = robots[i];
                 Suitcase s = suitcasesCoordinates[i].GetSuitcase();
+                Coordinate destination = suitcasesCoordinates[i];
                 r.AddTask(new RobotGrab(vertex, s, coordinates, g, false));
                 r.AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
-                r.AddTask(new RobotRelease(s, new Coordinate(s.x, s.y, s.z)));
+                r.AddTask(new RobotRelease(s, new Coordinate(destination.GetX(), destination.GetY(), destination.GetZ())));
                 s.Move(15, 0, 5); // Move to A
 
                 if (returnHome)

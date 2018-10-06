@@ -8,6 +8,7 @@ namespace Models
     public class Airplane : BaseModel
     {
         private List<ITask<Airplane>> tasks = new List<ITask<Airplane>>();
+        private bool landed = false;
 
         public Airplane(double x, double y, double z, double rotationX, double rotationY, double rotationZ)
         {
@@ -44,6 +45,15 @@ namespace Models
         public void AddTask(ITask<Airplane> task)
         {
             this.tasks.Add(task);
+        }
+
+        public bool GetLanded()
+        {
+            return this.landed;
+        }
+        public void SetLanded(bool landed)
+        {
+            this.landed = landed;
         }
 
     }
