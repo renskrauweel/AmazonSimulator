@@ -174,7 +174,7 @@ namespace Models {
                 }
             }
 
-            int totalSuitcases = 4;
+            int totalSuitcases = 8;
             Random rnd = new Random();
             for (int i = 0; i < totalSuitcases; i++)
             {

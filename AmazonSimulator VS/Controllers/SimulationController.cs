@@ -20,6 +20,7 @@ namespace Controllers {
         private List<Coordinate> coordinates;
 
         public static int transportSuitcasesCount = 0;
+        public int startAt = 0;
 
         public SimulationController(World w) {
             this.w = w;
@@ -54,8 +55,7 @@ namespace Controllers {
 
             // Fetch airplane
             Airplane a = w.GetAirplanes()[0];
-
-
+            
             // Fetch robots
             List<Robot> robots = w.GetRobots();
 
@@ -65,8 +65,10 @@ namespace Controllers {
                 if (transportSuitcasesCount == 4)
                 {
                     // Move out of view
-                    foreach (Coordinate c in w.GetOccupationList())
+                    List<Coordinate> occupationList = w.GetOccupationList();
+                    for (int i = 0; i < 4; i++)
                     {
+                        Coordinate c = occupationList[i+startAt];
                         Suitcase s = c.GetSuitcase();
                         s.Move(100, 100, 100);
                     }
@@ -79,14 +81,22 @@ namespace Controllers {
                 }
                 if (a.GetLanded())
                 {
-                    // Move all suitcases to A
-                    foreach (Coordinate c in w.GetOccupationList())
+                    // Move suitcases to A
+                    List<Coordinate> occupationList = w.GetOccupationList();
+                    for (int i = 0; i < 4; i++)
                     {
+                        Coordinate c = occupationList[i+startAt];
                         Suitcase s = c.GetSuitcase();
                         s.Move(15, 0, 5); // Move to A
                     }
-                    PlaceAllSuitcases(robots, true);
+                    PlaceAllSuitcases(robots, true, startAt);
                     a.SetLanded(false);
+                    this.startAt = 4;
+                }
+                if (this.startAt == 4)
+                {
+                    FetchAllSuitcases(robots, startAt);
+                    startAt = 0;
                 }
 
                 UpdateFrame();
@@ -103,26 +113,28 @@ namespace Controllers {
             Thread.Sleep(tickTime);
         }
 
-        private void FetchAllSuitcases(List<Robot> robots)
+        private void FetchAllSuitcases(List<Robot> robots, int startAt = 0)
         {
             List<Coordinate> suitcasesCoordinates = w.GetOccupationList();
-            for (int i = 0; i < suitcasesCoordinates.Count; i++)
+            for (int i = 0; i < robots.Count; i++)
             {
-                char vertex = suitcasesCoordinates[i].GetVertex().Value;
+                int j = i + startAt;
+                char vertex = suitcasesCoordinates[j].GetVertex().Value;
                 robots[i].AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
-                robots[i].AddTask(new RobotGrab(vertex, suitcasesCoordinates[i].GetSuitcase(), coordinates, g, true));
+                robots[i].AddTask(new RobotGrab(vertex, suitcasesCoordinates[j].GetSuitcase(), coordinates, g, true));
             }
         }
 
-        private void PlaceAllSuitcases(List<Robot> robots, bool returnHome)
+        private void PlaceAllSuitcases(List<Robot> robots, bool returnHome, int startAt = 0)
         {
             List<Coordinate> suitcasesCoordinates = w.GetOccupationList();
-            for (int i = 0; i < suitcasesCoordinates.Count; i++)
+            for (int i = 0; i < robots.Count; i++)
             {
-                char vertex = suitcasesCoordinates[i].GetVertex().Value;
+                int j = i + startAt;
+                char vertex = suitcasesCoordinates[j].GetVertex().Value;
                 Robot r = robots[i];
-                Suitcase s = suitcasesCoordinates[i].GetSuitcase();
-                Coordinate destination = suitcasesCoordinates[i];
+                Suitcase s = suitcasesCoordinates[j].GetSuitcase();
+                Coordinate destination = suitcasesCoordinates[j];
                 r.AddTask(new RobotGrab(vertex, s, coordinates, g, false));
                 r.AddTask(new RobotMove(g.shortest_path('A', vertex), coordinates, g));
                 r.AddTask(new RobotRelease(s, new Coordinate(destination.GetX(), destination.GetY(), destination.GetZ())));
