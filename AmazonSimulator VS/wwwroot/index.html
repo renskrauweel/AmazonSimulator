@@ -205,7 +205,9 @@
                                             switch (suitcaseNr) {
                                                 case 1:
                                                     var scalar = 15;
-                                                    suitcase.scale.set(1/scalar, 1/scalar, 1/scalar);
+                                                    suitcase.scale.set(1 / scalar, 1 / scalar, 1 / scalar);
+                                                    //this obj-file exists out of 13 suitcases, but we just need the middle one. 
+                                                    //Therefor we make the remaining invisible with this loop. 
                                                     for (var i = 0; i < 51; i++) {
                                                         if (!(i >= 39 && i <= 42)) {
                                                             suitcase.children[i].material = new THREE.MeshPhongMaterial({ wireframe: false, opacity: 0 });

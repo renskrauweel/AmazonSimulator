@@ -67,7 +67,7 @@ namespace Controllers {
         /// The main simulate method
         /// </summary>
         public void Simulate() {
-            Thread.Sleep(4000); // Wait for world to be loaded, improving performance
+            Thread.Sleep(5000); // Wait for world to be loaded, improving performance
             running = true;
 
             // Fetch airplane
