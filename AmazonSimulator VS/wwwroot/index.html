@@ -204,10 +204,14 @@
                                         function (suitcase) {
                                             switch (suitcaseNr) {
                                                 case 1:
-                                                    var scalar = 3;
-                                                    suitcase.scale.set(scalar, scalar, scalar);
-                                                    suitcase.children[1].material = new THREE.MeshPhongMaterial({ wireframe: false, opacity: 0 });
-                                                    suitcase.children[1].material.transparent = true;
+                                                    var scalar = 15;
+                                                    suitcase.scale.set(1/scalar, 1/scalar, 1/scalar);
+                                                    for (var i = 0; i < 51; i++) {
+                                                        if (!(i >= 39 && i <= 42)) {
+                                                            suitcase.children[i].material = new THREE.MeshPhongMaterial({ wireframe: false, opacity: 0 });
+                                                            suitcase.children[i].material.transparent = true;
+                                                        }
+                                                    }
                                                     break;
                                                 case 2:
                                                     var scalar = 11;
@@ -229,20 +233,18 @@
 
                                             switch (suitcaseNr) {
                                                 case 1:
-                                                    object.position.y = command.parameters.y + 0.62;
-                                                    object.position.z = command.parameters.z + 1;
+                                                    object.position.y = command.parameters.y + 0.04;
                                                     break;
                                                 case 2:
                                                     object.position.y = command.parameters.y + 0.04;
-                                                    object.position.z = command.parameters.z;
                                                     break;
                                                 case 3:
                                                     object.position.y = command.parameters.y + 0.04;
-                                                    object.position.z = command.parameters.z;
                                                     break;
                                             }
 
                                             object.position.x = command.parameters.x;
+                                            object.position.z = command.parameters.z;
 
                                             object.rotation.x = command.parameters.rotationX;
                                             object.rotation.y = command.parameters.rotationY;

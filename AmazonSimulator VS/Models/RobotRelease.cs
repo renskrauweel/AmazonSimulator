@@ -37,7 +37,7 @@ namespace Models
 
             if (placeAtHome)
             {
-                suitcase.Move(home.GetX(), home.GetY(), home.GetZ() - 1);
+                suitcase.Move(home.GetX(), home.GetY(), home.GetZ() - 2.3);
             } else
             {
                 suitcase.Move(home.GetX(), home.GetY(), home.GetZ());
@@ -51,7 +51,7 @@ namespace Models
         /// <returns></returns>
         public bool TaskComplete(Robot r)
         {
-            bool complete = (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ() - 1) || (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ());
+            bool complete = (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ() - 2.3) || (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ());
             if (complete && updateSuitcaseCountForTransport)
             {
                 Controllers.SimulationController.transportSuitcasesCount++;

@@ -76,80 +76,29 @@
         scene.add(sphericalSkybox);
     }
     function placeGarage(scene) {
-        //// Instantiate a loader
-        //var loader = new THREE.GLTFLoader();
+        var geometry = new THREE.BoxGeometry(8, 3, 4.45);
+        var cubeMaterials = [
+            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/Garage_Side.jpg"), side: THREE.DoubleSide }), //LEFT
+            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/Garage_Side.jpg"), side: THREE.DoubleSide }), //RIGHT
+            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/Garage_Top.jpg"), side: THREE.DoubleSide }), //TOP
+            new THREE.MeshPhongMaterial({ color: 0x3a3a3a, side: THREE.DoubleSide }), //BOTTOM
+            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load("textures/Garage_Front.jpg"), side: THREE.DoubleSide }), //FRONT
+            new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load("textures/Garage_Front.jpg"), side: THREE.DoubleSide }), //BACK
+        ];
+        var material = new THREE.MeshFaceMaterial(cubeMaterials);
+        var Garage = new THREE.Mesh(geometry, material);
 
-        //// Optional: Provide a DRACOLoader instance to decode compressed mesh data
-        //THREE.DRACOLoader.setDecoderPath('/examples/js/libs/draco');
-        //loader.setDRACOLoader(new THREE.DRACOLoader());
+        Garage.position.x = 15;
+        Garage.position.y = 1.501;
+        Garage.position.z = 2.279;
 
-        //// Load a glTF resource
-        //loader.load(
-        //    // resource URL
-        //    'models/myGarage.glb',
-        //    // called when the resource is loaded
-        //    function (gltf) {
+        var group = new THREE.Group();
+        group.add(Garage);
 
-        //        scene.add(gltf.scene);
+        scene.add(group);
 
-        //        gltf.animations; // Array<THREE.AnimationClip>
-        //        gltf.scene; // THREE.Scene
-        //        gltf.scenes; // Array<THREE.Scene>
-        //        gltf.cameras; // Array<THREE.Camera>
-        //        gltf.asset; // Object
-
-        //    },
-        //    // called while loading is progressing
-        //    function (xhr) {
-
-        //        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
-        //    },
-        //    // called when loading has errors
-        //    function (error) {
-
-        //        console.log('An error happened');
-
-        //    }
-        //);
-
-
-        var OBJLoader = new THREE.OBJLoader();
-        var mtlLoader = new THREE.MTLLoader();
-        OBJLoader.setPath('models/');
-        mtlLoader.setPath('models/');
-
-        mtlLoader.load('myGarage.mtl', function (materials) {
-            materials.preload();
-            materials.wireframe = false;
-            OBJLoader.setMaterials(materials);
-            // load a resource
-            OBJLoader.load(
-                // resource URL
-                'myGarage.obj',
-
-                // called when resource is loaded
-                function (garage) {
-                    var scalar = 35;
-                    garage.scale.set(2 / scalar, 1 / scalar, 1 / scalar);
-
-                    var group = new THREE.Group();
-                    group.add(garage);
-
-                    scene.add(group);
-
-                    garage.position.x = 15;
-                    garage.position.y = 0.001;
-                    garage.position.z = 1.429;
-
-                },
-                // called when loading has errors
-                function (error) {
-                    console.log('An error happened - garage');
-                }
-            );
-        });
     }
+
     function placeRadioTower(scene) {
         var OBJLoader = new THREE.OBJLoader();
         var mtlLoader = new THREE.MTLLoader();
@@ -181,7 +130,7 @@
                     //worldObjects[command.parameters.guid] = group;
 
                     tower.position.x = 2.5;
-                    tower.position.y = 17;
+                    tower.position.y = 17.1;
                     tower.position.z = 2.5;
 
                 },
