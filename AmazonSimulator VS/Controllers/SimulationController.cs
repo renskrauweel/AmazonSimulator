@@ -22,6 +22,7 @@ namespace Controllers {
         public static int transportSuitcasesCount = 0;
         private int startAt = 0;
         private int timesFetchedSuitcases = 0;
+        private int timesLanded = 0;
 
         /// <summary>
         /// Constructs SimulationController
@@ -104,6 +105,7 @@ namespace Controllers {
                 }
                 if (a.GetLanded())
                 {
+                    timesLanded++;
                     // Move suitcases to A
                     List<Coordinate> occupationList = w.GetOccupationList();
                     int toAdd = 0;
@@ -122,6 +124,12 @@ namespace Controllers {
                     }
                     PlaceAllSuitcases(robots, true, toAdd);
                     a.SetLanded(false);
+                    if (timesLanded == 2)
+                    {
+                        // Redo simulation
+                        FetchAllSuitcases(robots);
+                        timesLanded = 0;
+                    }
                 }
                 if (this.startAt == 4)
                 {
