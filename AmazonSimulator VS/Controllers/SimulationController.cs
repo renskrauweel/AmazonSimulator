@@ -20,7 +20,8 @@ namespace Controllers {
         private List<Coordinate> coordinates;
 
         public static int transportSuitcasesCount = 0;
-        public int startAt = 0;
+        private int startAt = 0;
+        private int timesFetchedSuitcases = 0;
 
         public SimulationController(World w) {
             this.w = w;
@@ -64,11 +65,17 @@ namespace Controllers {
             while (running) {
                 if (transportSuitcasesCount == 4)
                 {
-                    // Move out of view
+                    timesFetchedSuitcases++;
+                    int toAdd = 0;
+                    if (timesFetchedSuitcases % 2 == 0)
+                    {
+                        toAdd = 4;
+                    }
+                    // Load into airplane
                     List<Coordinate> occupationList = w.GetOccupationList();
                     for (int i = 0; i < 4; i++)
                     {
-                        Coordinate c = occupationList[i+startAt];
+                        Coordinate c = occupationList[i+toAdd];
                         Suitcase s = c.GetSuitcase();
                         s.Move(100, 100, 100);
                     }
@@ -83,15 +90,22 @@ namespace Controllers {
                 {
                     // Move suitcases to A
                     List<Coordinate> occupationList = w.GetOccupationList();
+                    int toAdd = 0;
+                    if (timesFetchedSuitcases % 2 == 0)
+                    {
+                        toAdd = 4;
+                    } else
+                    {
+                        this.startAt = 4;
+                    }
                     for (int i = 0; i < 4; i++)
                     {
-                        Coordinate c = occupationList[i+startAt];
+                        Coordinate c = occupationList[i+toAdd];
                         Suitcase s = c.GetSuitcase();
                         s.Move(15, 0, 5); // Move to A
                     }
-                    PlaceAllSuitcases(robots, true, startAt);
+                    PlaceAllSuitcases(robots, true, toAdd);
                     a.SetLanded(false);
-                    this.startAt = 4;
                 }
                 if (this.startAt == 4)
                 {
