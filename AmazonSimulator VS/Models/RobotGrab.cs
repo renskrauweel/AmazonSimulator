@@ -15,6 +15,14 @@ namespace Models
         private bool walkingHome = false;
         private bool bringHome = false;
 
+        /// <summary>
+        /// Constructs the RobotGrab task
+        /// </summary>
+        /// <param name="pickupNode"></param>
+        /// <param name="suitcase"></param>
+        /// <param name="coordinates"></param>
+        /// <param name="g"></param>
+        /// <param name="bringHome"></param>
         public RobotGrab(char pickupNode, Suitcase suitcase, List<Coordinate> coordinates, Graph g, bool bringHome)
         {
             this.pickupNode = pickupNode;
@@ -24,6 +32,10 @@ namespace Models
             this.bringHome = bringHome;
         }
 
+        /// <summary>
+        /// Start task method
+        /// </summary>
+        /// <param name="r"></param>
         public void StartTask(Robot r)
         {
             suitcase.x = r.x;
@@ -40,6 +52,11 @@ namespace Models
             }
         }
 
+        /// <summary>
+        /// Task complete method
+        /// </summary>
+        /// <param name="r"></param>
+        /// <returns></returns>
         public bool TaskComplete(Robot r)
         {
             bool complete = (suitcase.x == r.x && suitcase.y == r.y + 0.3 && suitcase.z == r.z);

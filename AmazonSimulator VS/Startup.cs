@@ -18,6 +18,10 @@ namespace AmazonSimulator_VS
     {
         public static SimulationController simulationController;
 
+        /// <summary>
+        /// Constructs startup
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             simulationController = new SimulationController(new Models.World());
@@ -84,15 +88,6 @@ namespace AmazonSimulator_VS
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                //app.UseHsts();
-            }
-
-            //app.UseHttpsRedirection();
-            //app.UseMvc();
-
-            //app.UseDirectoryBrowser(new DirectoryBrowserOptions());
         }
     }
 }

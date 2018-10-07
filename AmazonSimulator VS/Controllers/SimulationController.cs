@@ -23,6 +23,10 @@ namespace Controllers {
         private int startAt = 0;
         private int timesFetchedSuitcases = 0;
 
+        /// <summary>
+        /// Constructs SimulationController
+        /// </summary>
+        /// <param name="w"></param>
         public SimulationController(World w) {
             this.w = w;
             this.g = w.GetGraph();
@@ -30,6 +34,10 @@ namespace Controllers {
             this.coordinates = w.GetCoordinates();
         }
 
+        /// <summary>
+        /// Adds a view
+        /// </summary>
+        /// <param name="v"></param>
         public void AddView(ClientView v) {
             ObservingClient oc = new ObservingClient();
 
@@ -39,6 +47,10 @@ namespace Controllers {
             views.Add(oc);
         }
 
+        /// <summary>
+        /// Removes a view
+        /// </summary>
+        /// <param name="v"></param>
         public void RemoveView(ClientView v) {
             for(int i = 0; i < views.Count; i++) {
                 ObservingClient currentOC = views[i];
@@ -50,6 +62,9 @@ namespace Controllers {
             }
         }
 
+        /// <summary>
+        /// The main simulate method
+        /// </summary>
         public void Simulate() {
             Thread.Sleep(4000); // Wait for world to be loaded, improving performance
             running = true;
@@ -60,6 +75,7 @@ namespace Controllers {
             // Fetch robots
             List<Robot> robots = w.GetRobots();
 
+            // Kickstart program
             FetchAllSuitcases(robots);
 
             while (running) {
@@ -80,10 +96,10 @@ namespace Controllers {
                         s.Move(100, 100, 100);
                     }
                     // Airplane liftoff
-                    a.AddTask(new AirplaneMove(new Coordinate(70, 4.3, -15), true)); //punt 3
-                    a.AddTask(new AirplaneMove(new Coordinate(125, 59, -15), true, true)); // punt 4
-                    a.AddTask(new AirplaneMove(new Coordinate(-50, 4.3, -15), false, true)); //punt 1
-                    a.AddTask(new AirplaneMove(new Coordinate(15, 4.3, -15))); //punt 2
+                    a.AddTask(new AirplaneMove(new Coordinate(70, 4.3, -15), true)); // point 3
+                    a.AddTask(new AirplaneMove(new Coordinate(125, 59, -15), true, true)); // point 4
+                    a.AddTask(new AirplaneMove(new Coordinate(-50, 4.3, -15), false, true)); // point 1
+                    a.AddTask(new AirplaneMove(new Coordinate(15, 4.3, -15))); // point 2
                     transportSuitcasesCount = 0;
                 }
                 if (a.GetLanded())
@@ -117,16 +133,27 @@ namespace Controllers {
             }
         }
 
+        /// <summary>
+        /// Ends simulation
+        /// </summary>
         public void EndSimulation() {
             running = false;
         }
 
+        /// <summary>
+        /// Updates frame by ticktime
+        /// </summary>
         private void UpdateFrame()
         {
             w.Update(tickTime);
             Thread.Sleep(tickTime);
         }
 
+        /// <summary>
+        /// Fetch the suitcases
+        /// </summary>
+        /// <param name="robots"></param>
+        /// <param name="startAt"></param>
         private void FetchAllSuitcases(List<Robot> robots, int startAt = 0)
         {
             List<Coordinate> suitcasesCoordinates = w.GetOccupationList();
@@ -139,6 +166,12 @@ namespace Controllers {
             }
         }
 
+        /// <summary>
+        /// Places the suitcases
+        /// </summary>
+        /// <param name="robots"></param>
+        /// <param name="returnHome"></param>
+        /// <param name="startAt"></param>
         private void PlaceAllSuitcases(List<Robot> robots, bool returnHome, int startAt = 0)
         {
             List<Coordinate> suitcasesCoordinates = w.GetOccupationList();

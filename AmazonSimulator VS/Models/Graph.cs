@@ -9,11 +9,22 @@ namespace Models
     {
         Dictionary<char, Dictionary<char, int>> vertices = new Dictionary<char, Dictionary<char, int>>();
 
+        /// <summary>
+        /// Adds a vertex
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="edges"></param>
         public void add_vertex(char name, Dictionary<char, int> edges)
         {
             vertices[name] = edges;
         }
 
+        /// <summary>
+        /// Returns the shortest path by Dijkstra Algorithm
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="finish"></param>
+        /// <returns></returns>
         public List<char> shortest_path(char start, char finish)
         {
             var previous = new Dictionary<char, char>();

@@ -7,6 +7,15 @@ namespace Models
 {
     public class Suitcase : BaseModel
     {
+        /// <summary>
+        /// Constructs the suitcase
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="rotationX"></param>
+        /// <param name="rotationY"></param>
+        /// <param name="rotationZ"></param>
         public Suitcase(double x, double y, double z, double rotationX, double rotationY, double rotationZ)
         {
             this.type = "suitcase";

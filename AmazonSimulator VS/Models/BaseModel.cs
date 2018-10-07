@@ -7,12 +7,6 @@ namespace Models
 {
     public abstract class BaseModel : IUpdatable
     {
-        /*protected double _x = 0;
-        protected double _y = 0;
-        protected double _z = 0;
-        protected double _rX = 0;
-        protected double _rY = 0;
-        protected double _rZ = 0;*/
 
         public string type { get; set; }
         public Guid guid { get; set; }
@@ -29,6 +23,12 @@ namespace Models
 
         public bool needsUpdate = true;
 
+        /// <summary>
+        /// Virtual Move method
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public virtual void Move(double x, double y, double z)
         {
             this.x = x;
@@ -38,6 +38,12 @@ namespace Models
             needsUpdate = true;
         }
 
+        /// <summary>
+        /// Rotate method
+        /// </summary>
+        /// <param name="rotationX"></param>
+        /// <param name="rotationY"></param>
+        /// <param name="rotationZ"></param>
         public virtual void Rotate(double rotationX, double rotationY, double rotationZ)
         {
             this.rotationX = rotationX;
@@ -47,6 +53,11 @@ namespace Models
             needsUpdate = true;
         }
 
+        /// <summary>
+        /// Update method
+        /// </summary>
+        /// <param name="tick"></param>
+        /// <returns></returns>
         public virtual bool Update(int tick)
         {
             if (needsUpdate)
@@ -57,6 +68,10 @@ namespace Models
             return false;
         }
 
+        /// <summary>
+        /// Move through given coordinates
+        /// </summary>
+        /// <param name="coordinates"></param>
         public void MoveThroughCoordinates(List<Coordinate> coordinates)
         {
             if (coordinates.Count > 0)
@@ -97,6 +112,10 @@ namespace Models
             }
         }
 
+        /// <summary>
+        /// Change direction
+        /// </summary>
+        /// <param name="coordinateToGo"></param>
         private void ChangeDirection(Coordinate coordinateToGo)
         {
             double degrees90 = Math.PI / 2;

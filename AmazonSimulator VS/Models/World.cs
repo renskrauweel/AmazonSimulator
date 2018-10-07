@@ -46,6 +46,9 @@ namespace Models {
         private Graph g = new Graph();
         private List<Coordinate> occupationList = new List<Coordinate>();
 
+        /// <summary>
+        /// Constructs the world
+        /// </summary>
         public World() {
             InitGraph();
 
@@ -59,19 +62,29 @@ namespace Models {
             a.Move(15, 4.3, -15);
             a.Rotate(0, Math.PI / 2, 0);
 
-            //Suitcase s1 = CreateSuitcase(0, 0, 0);
-            //s1.Move(20, 0, 11);
-            //Suitcase s2 = CreateSuitcase(0, 0, 0);
-            //s2.Move(20, 0, 16);
             PlaceSuitcases(this.coordinates);
         }
 
+        /// <summary>
+        /// Create a Robot and add to the world
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         private Robot CreateRobot(double x, double y, double z) {
             Robot r = new Robot(x,y,z,0,0,0);
             worldObjects.Add(r);
             return r;
         }
 
+        /// <summary>
+        /// Create an Airplane and add to the world
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         private Airplane CreateAirplane(double x, double y, double z)
         {
             Airplane t = new Airplane(x, y, z, 0, 0, 0);
@@ -79,6 +92,13 @@ namespace Models {
             return t;
         }
 
+        /// <summary>
+        /// Create Suitcase and add to the world
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         private Suitcase CreateSuitcase(double x, double y, double z)
         {
             Suitcase s = new Suitcase(x, y, z, 0, 0, 0);
@@ -86,6 +106,11 @@ namespace Models {
             return s;
         }
 
+        /// <summary>
+        /// Subscribe observer
+        /// </summary>
+        /// <param name="observer"></param>
+        /// <returns></returns>
         public IDisposable Subscribe(IObserver<Command> observer)
         {
             if (!observers.Contains(observer)) {
@@ -96,18 +121,31 @@ namespace Models {
             return new Unsubscriber<Command>(observers, observer);
         }
 
+        /// <summary>
+        /// Send command to observers
+        /// </summary>
+        /// <param name="c"></param>
         private void SendCommandToObservers(Command c) {
             for(int i = 0; i < this.observers.Count; i++) {
                 this.observers[i].OnNext(c);
             }
         }
 
+        /// <summary>
+        /// Send creation commands to observer
+        /// </summary>
+        /// <param name="obs"></param>
         private void SendCreationCommandsToObserver(IObserver<Command> obs) {
             foreach(BaseModel m3d in worldObjects) {
                 obs.OnNext(new UpdateModel3DCommand(m3d));
             }
         }
 
+        /// <summary>
+        /// Update method by ticktime
+        /// </summary>
+        /// <param name="tick"></param>
+        /// <returns></returns>
         public bool Update(int tick)
         {
             for(int i = 0; i < worldObjects.Count; i++) {
@@ -125,6 +163,10 @@ namespace Models {
             return true;
         }
 
+        /// <summary>
+        /// Gets the robots
+        /// </summary>
+        /// <returns></returns>
         public List<Robot> GetRobots()
         {
             List<Robot> robots = new List<Robot>();
@@ -138,6 +180,10 @@ namespace Models {
             return robots;
         }
 
+        /// <summary>
+        /// Gets the suitcases
+        /// </summary>
+        /// <returns></returns>
         public List<Suitcase> GetSuitcases()
         {
             List<Suitcase> suitcases = new List<Suitcase>();
@@ -151,6 +197,10 @@ namespace Models {
             return suitcases;
         }
 
+        /// <summary>
+        /// Gets the airplanes
+        /// </summary>
+        /// <returns></returns>
         public List<Airplane> GetAirplanes()
         {
             List<Airplane> airplanes = new List<Airplane>();
@@ -164,6 +214,10 @@ namespace Models {
             return airplanes;
         }
 
+        /// <summary>
+        /// Place suitcases in the world
+        /// </summary>
+        /// <param name="coordinates"></param>
         private void PlaceSuitcases(List<Coordinate> coordinates)
         {
             foreach (Coordinate c in coordinates)
@@ -185,6 +239,10 @@ namespace Models {
             }
         }
 
+        /// <summary>
+        /// Get Coordinates occupied
+        /// </summary>
+        /// <returns></returns>
         public List<Coordinate> GetOccupationList()
         {
             List<Coordinate> suitcaseCoordinates = new List<Coordinate>();
@@ -198,15 +256,26 @@ namespace Models {
             return suitcaseCoordinates;
         }
 
+        /// <summary>
+        /// Get all coordinates
+        /// </summary>
+        /// <returns></returns>
         public List<Coordinate> GetCoordinates()
         {
             return this.coordinates;
         }
+        /// <summary>
+        /// Get the graph
+        /// </summary>
+        /// <returns></returns>
         public Graph GetGraph()
         {
             return this.g;
         }
 
+        /// <summary>
+        /// Initialise the graph
+        /// </summary>
         private void InitGraph()
         {
             //Start
@@ -257,12 +326,20 @@ namespace Models {
         private List<IObserver<Command>> _observers;
         private IObserver<Command> _observer;
 
+        /// <summary>
+        /// Unsubscribe method
+        /// </summary>
+        /// <param name="observers"></param>
+        /// <param name="observer"></param>
         internal Unsubscriber(List<IObserver<Command>> observers, IObserver<Command> observer)
         {
             this._observers = observers;
             this._observer = observer;
         }
 
+        /// <summary>
+        /// Dispose method
+        /// </summary>
         public void Dispose() 
         {
             if (_observers.Contains(_observer))

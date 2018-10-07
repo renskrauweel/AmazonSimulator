@@ -11,6 +11,12 @@ namespace Models
         private Coordinate home;
         private bool updateSuitcaseCountForTransport;
 
+        /// <summary>
+        /// Constructs the RobotRelease task
+        /// </summary>
+        /// <param name="suitcase"></param>
+        /// <param name="home"></param>
+        /// <param name="updateSuitcaseCountForTransport"></param>
         public RobotRelease(Suitcase suitcase, Coordinate home, bool updateSuitcaseCountForTransport = false)
         {
             this.suitcase = suitcase;
@@ -18,6 +24,10 @@ namespace Models
             this.updateSuitcaseCountForTransport = updateSuitcaseCountForTransport;
         }
 
+        /// <summary>
+        /// Start task method
+        /// </summary>
+        /// <param name="r"></param>
         public void StartTask(Robot r)
         {
             r.ClearSuitcase();
@@ -25,6 +35,11 @@ namespace Models
             suitcase.Move(home.GetX(), home.GetY(), home.GetZ() - 1);
         }
 
+        /// <summary>
+        /// Task complete method
+        /// </summary>
+        /// <param name="r"></param>
+        /// <returns></returns>
         public bool TaskComplete(Robot r)
         {
             bool complete = (suitcase.x == home.GetX() && suitcase.y == home.GetY() && suitcase.z == home.GetZ() - 1);

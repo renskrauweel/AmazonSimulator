@@ -11,11 +11,19 @@ namespace Views {
     public class ClientView : IObserver<Command> {
         private WebSocket socket;
 
+        /// <summary>
+        /// Construcs the ClientView
+        /// </summary>
+        /// <param name="socket"></param>
         public ClientView(WebSocket socket)
         {
             this.socket = socket;
         }
 
+        /// <summary>
+        /// Receiving task for socket
+        /// </summary>
+        /// <returns></returns>
         public async Task StartReceiving() {
             var buffer = new byte[1024 * 4];
 
@@ -34,6 +42,10 @@ namespace Views {
             await socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
         }
 
+        /// <summary>
+        /// Send a message
+        /// </summary>
+        /// <param name="message"></param>
         private async void SendMessage(string message) {
             byte[] buffer = Encoding.UTF8.GetBytes(message);
             try {
@@ -43,20 +55,35 @@ namespace Views {
             }
         }
 
+        /// <summary>
+        /// Send command
+        /// </summary>
+        /// <param name="c"></param>
         public void SendCommand(Command c) {
             SendMessage(c.ToJson());
         }
 
+        /// <summary>
+        /// OnCompleted method
+        /// </summary>
         public void OnCompleted()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// OnError method
+        /// </summary>
+        /// <param name="error"></param>
         public void OnError(Exception error)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// OnNext method
+        /// </summary>
+        /// <param name="value"></param>
         public void OnNext(Command value)
         {
             SendCommand(value);

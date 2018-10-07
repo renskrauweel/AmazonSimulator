@@ -12,10 +12,13 @@ namespace Models
         double Dec = 2;
         bool liftOff = false;
         bool Flying = false;
-        //bool SpeedUp = false;
-        //bool SpeedDown = false;
-        //bool Go = false;
 
+        /// <summary>
+        /// Constructs AirplaneMove
+        /// </summary>
+        /// <param name="destination"></param>
+        /// <param name="liftOff"></param>
+        /// <param name="Flying"></param>
         public AirplaneMove(Coordinate destination, bool liftOff = false, bool Flying = false)
         {
             this.destination = destination;
@@ -23,6 +26,10 @@ namespace Models
             this.Flying = Flying;
         }
 
+        /// <summary>
+        /// Start the task
+        /// </summary>
+        /// <param name="a"></param>
         public void StartTask(Airplane a)
         {
             if (!liftOff && !Flying)
@@ -112,6 +119,11 @@ namespace Models
             }
         }
 
+        /// <summary>
+        /// Completes the task
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public bool TaskComplete(Airplane a)
         {
             bool Complete = Math.Round(a.x, 1) == Math.Round(destination.GetX(), 1) && Math.Round(a.z, 1) == Math.Round(destination.GetZ(), 1);
@@ -120,9 +132,10 @@ namespace Models
             {
                 a.Move(-152.5, 54.3, -15);
             }
+            // Trigger robots when on point 2 (home)
             if (Complete && !liftOff && !Flying) {
                 a.SetLanded(true);
-            } //To Trigger robots when on point 2 (aka home)
+            }
             return Complete;
         }
     }
